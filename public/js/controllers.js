@@ -3,7 +3,7 @@
 /* Controllers */
 
 angular.module('myApp.controllers', []).
-  controller('HomeController', function ($scope, $http) {
+  controller('HomeController', function ($scope) {
 
 
   });
