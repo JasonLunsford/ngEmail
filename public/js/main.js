@@ -13,8 +13,9 @@ config(function ($routeProvider, $locationProvider) {
       templateUrl: 'partials/home',
       controller: 'HomeController'
     }).
-    when('/pizza', {
-      template: 'I Love Pizza!'
+    when('/settings', {
+      templateUrl: 'partials/settings',
+      controller: 'SettingsController'
     }).
     otherwise({
       redirectTo: '/'

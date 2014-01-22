@@ -1,9 +1,11 @@
 'use strict';
 
-/* Controllers */
-
 angular.module('myApp.controllers', []).
-  controller('HomeController', function ($scope) {
+	controller('HomeController', function ($scope) {
 
 
-  });
+	}).
+	controller('SettingsController', function ($scope) {
+		$scope.name = "Jason";
+
+	});
