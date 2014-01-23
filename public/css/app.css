@@ -1,8 +1,8 @@
 /* app css stylesheet */
 
-.ng-pristine { border:1px solid green; }
-.ng-dirty { border:1px solid red; }
-.ng-invalid.ng-dirty { border:1px solid red; }
-.ng-valid.ng-dirty { border:1px solid green; }
+.ng-pristine			{ border:1px solid green; }
+.ng-dirty				{ border:1px solid red; }
+.ng-invalid.ng-dirty	{ border:1px solid red; }
+.ng-valid.ng-dirty		{ border:1px solid green; }
 
 input.ng-invalid-minlength.ng-dirty { border:1px solid blue; }

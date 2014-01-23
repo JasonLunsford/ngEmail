@@ -6,6 +6,14 @@ angular.module('myApp.controllers', []).
 
 	}).
 	controller('SettingsController', function ($scope) {
-		$scope.name = "Jason";
+		$scope.settings = {
+			name:"Jason",
+			email:"noway@jose.com",
+			age:38
+		}
+				
+		$scope.updateSettings = function() {
+			console.log("updateSettings was called.");
+		}
 
 	});
