@@ -1,8 +1,40 @@
-/* app css stylesheet */
 
-.ng-pristine			{ border:1px solid green; }
-.ng-dirty				{ border:1px solid red; }
-.ng-invalid.ng-dirty	{ border:1px solid red; }
-.ng-valid.ng-dirty		{ border:1px solid green; }
+/* Settings Page */
+	.ng-pristine fieldset			{ border:1px solid green; }
+	.ng-dirty fieldset				{ border:1px solid red; }
+	.ng-invalid.ng-dirty fieldset	{ border:1px solid red; }
+	.ng-valid.ng-dirty fieldset		{ border:1px solid green; }
 
-input.ng-invalid-minlength.ng-dirty { border:1px solid blue; }
+	input.ng-invalid-minlength.ng-dirty { border:1px solid blue; }
+
+/* Home Page */
+
+	#sidebar {
+		clear:left;
+		float:left;
+		min-height:300px;
+		position:relative;
+		width:228px;
+		z-index:1;scrs
+	}
+
+	#emailListing {
+		margin:20px 0px 0px 0px;
+		overflow-y:scroll;
+		overflow-x:hidden;
+	}
+	.emailListing {
+		border-radius:3px;
+		height:120px;
+		overflow:hidden;
+		padding:13px;
+	}
+	.emailListing img { }
+	.emailListing .date {
+		color:blue;
+		display:none;
+		font-size:0.5em;
+	}
+	.emailListing .subject {
+		font-size:0.8em;
+	}

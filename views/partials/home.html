@@ -1,1 +1,15 @@
-<h1>Home</h1>
+<div class="small-4 columns" data-ng-controller="MailListingController">
+	<h2>Sidebar</h2>
+	<ul id="emailListing">
+		<li data-ng-repeat="mail in email">
+			<div class="container">
+				<div class="small-8 columns">{{ mail.from }}</div>
+				<div class="small-12 columns">{{ mail.subject }}</div>
+			</div>
+		</li>
+	</ul>
+</div>
+
+<div class="small-8 columns" data-ng-controller="ContentController">
+	<h2>Content</h2>
+</div>

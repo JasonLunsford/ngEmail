@@ -5,6 +5,7 @@
 
 var express = require('express'),
 	routes  = require('./routes'),
+	api 	= require('./routes/api'),
 	http    = require('http'),
 	path    = require('path');
 
@@ -36,6 +37,9 @@ if (app.get('env') === 'development') {
 // serve index and view partials
 app.get('/', routes.index);
 app.get('/partials/:name', routes.partials);
+
+// JSON API
+app.get('/api/mail', api.mail);
 
 // redirect all others to the index (HTML5 history)
 app.get('*', routes.index);

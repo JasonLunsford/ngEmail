@@ -5,6 +5,24 @@ angular.module('myApp.controllers', []).
 
 
 	}).
+	controller('MailListingController', function ($scope, $http) {
+		$scope.email = []
+
+		$http({
+			method:"GET",
+			url:"/api/mail"
+		})
+		.success(function(data, status, headers) {
+			
+		})
+		.error(function(data, status, headers) {
+			
+		});
+	}).
+	controller('ContentController', function ($scope) {
+
+
+	}).
 	controller('SettingsController', function ($scope) {
 		$scope.settings = {
 			name:"Jason",
