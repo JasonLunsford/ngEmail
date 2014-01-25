@@ -13,7 +13,7 @@ angular.module('myApp.controllers', []).
 			url:"/api/mail"
 		})
 		.success(function(data, status, headers) {
-			
+			$scope.email = data.all;
 		})
 		.error(function(data, status, headers) {
 			

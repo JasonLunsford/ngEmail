@@ -16,6 +16,11 @@ app.engine('html', require('ejs').renderFile);
 /***************
  * Configuration
  ***************/
+ 
+// globals
+app.locals({
+	title: 'Simple Email v1.0'
+});
 
 // all environments
 app.set('port', process.env.PORT || 3000);
@@ -38,7 +43,7 @@ if (app.get('env') === 'development') {
 app.get('/', routes.index);
 app.get('/partials/:name', routes.partials);
 
-// JSON API
+// JSON APIs
 app.get('/api/mail', api.mail);
 
 // redirect all others to the index (HTML5 history)
