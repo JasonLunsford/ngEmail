@@ -1,8 +1,14 @@
 <div class="small-4 columns" data-ng-controller="MailListingController">
 	<h2>Sidebar</h2>
 	<ul id="emailListing">
-		<li data-ng-repeat="mail in email">
-			<div class="container">
+		<!-- if more sophisticated interactions needed, we could created a special
+			 controller per iteration for each mail item via ng-controller. But
+			 because this is a simple application the ng-click directive is
+			 adequate. -->
+		<li data-ng-repeat="mail in email" data-ng-click="setSelectedMail(mail)">
+			<!-- {selected: } is an example of an Angular expression, which in this case
+				 applies the .selected class to the element when isSelected(mail) returns true -->
+			<div class="container emailListing" data-ng-class="{selected: isSelected(mail)}">
 				<div class="small-8 columns">{{ mail.from }}</div>
 				<div class="small-12 columns">{{ mail.subject }}</div>
 			</div>
@@ -11,5 +17,20 @@
 </div>
 
 <div class="small-8 columns" data-ng-controller="ContentController">
-	<h2>Content</h2>
+	<div data-ng-show="!selectedMail">
+		<h2>No Conversations Selected</h2>
+	</div>
+	<div data-ng-show="selectedMail">
+		<div class="row header">
+			<div class="small-6 columns">{{ selectedMail.subject }}</div>
+			<div class="small-6 columns">{{ selectedMail.sent_at | date:'MM/dd/yy' }}</div>
+		</div>
+		<div class="row actions">
+			<div class="small-8 columns">
+				{{ selectedMail.from.join(", ") }} to {{ selectedMail.to }}
+			</div>
+			<a data-ng-click="showReply()" class="button radius push-1">Reply</a>
+		</div>
+		<div class="small-12 columns" data-ng-bind-html="selectedMail.body"></div>
+	</div>
 </div>

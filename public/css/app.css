@@ -1,6 +1,6 @@
 
 /* Settings Page */
-	.ng-pristine fieldset			{ border:1px solid green; }
+	.ng-pristine fieldset			{ border:1px solid #DDDDDD; }
 	.ng-dirty fieldset				{ border:1px solid red; }
 	.ng-invalid.ng-dirty fieldset	{ border:1px solid red; }
 	.ng-valid.ng-dirty fieldset		{ border:1px solid green; }
