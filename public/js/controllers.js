@@ -38,10 +38,26 @@ angular.module('myApp.controllers', []).
 			
 		});
 	}]).
-	controller('ContentController', function ($scope) {
+	controller('ContentController', ['$scope', function ($scope) {
+		$scope.showingReply = false;
+		$scope.reply = {};
+		
+		$scope.toggleReplyForm = function() {
+			$scope.showingReply = !$scope.showingReply;
+			$scope.reply = {};
+			$scope.reply.to = $scope.selectedMail.from.join(", ");
+			$scope.reply.body = "\n\n ---------------------------- \n\n" + $scope.selectedMail.body;
+		};
+		
+		/*  hook into the watch list functionality by using $watch - when watched events are
+			detected an angular event digest loop is triggered, in this case setting $scope.showingReply
+			back to false and resetting the $scope.reply object */
+		$scope.$watch('selectedMail', function(evt) {
+			$scope.showingReply = false; // hide reply form
+			$scope.reply = {}; 			 // reset reply object
+		});
 
-
-	}).
+	}]).
 	controller('SettingsController', ['$scope', function ($scope) {
 		$scope.settings = {
 			name:"Jason",

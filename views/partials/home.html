@@ -21,6 +21,23 @@
 		<h2>No Conversations Selected</h2>
 	</div>
 	<div data-ng-show="selectedMail">
+		<form id="replyForm" data-ng-submit="sendEmailReply()" data-ng-show="showingReply">
+			<div class="row collapse">
+				<div class="small-1 columns">
+					<span class="prefix">To</span>
+				</div>
+				<div class="small-11 columns">
+					<input data-ng-model="reply.to" type="email" placeholder="">
+				</div>
+				
+				<div class="small-12 columns">
+					<textarea data-ng-model="reply.body"></textarea>
+				</div>
+			</div>
+			
+			<button class="button radius" data-ng-click="sendReply()">Send</button>
+			<button class="button radius alert" data-ng-click="toggleReplyForm()">Cancel</button>
+		</form>
 		<div class="row header">
 			<div class="small-6 columns">{{ selectedMail.subject }}</div>
 			<div class="small-6 columns">{{ selectedMail.sent_at | date:'MM/dd/yy' }}</div>
@@ -29,7 +46,7 @@
 			<div class="small-8 columns">
 				{{ selectedMail.from.join(", ") }} to {{ selectedMail.to }}
 			</div>
-			<a data-ng-click="showReply()" class="button radius push-1">Reply</a>
+			<a data-ng-click="toggleReplyForm()" class="button radius push-1">Reply</a>
 		</div>
 		<div class="small-12 columns" data-ng-bind-html="selectedMail.body"></div>
 	</div>
