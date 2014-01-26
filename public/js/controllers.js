@@ -24,13 +24,10 @@ angular.module('myApp.controllers', []).
 		};
 
 	}]).
-	controller('MailListingController', ['$scope', '$http', function ($scope, $http) {
+	controller('MailListingController', ['$scope', 'mailService', function ($scope, mailService) {
 		$scope.email = []
 
-		$http({
-			method:"GET",
-			url:"/api/mail"
-		})
+		mailService.getMail()
 		.success(function(data, status, headers) {
 			$scope.email = data.all;
 		})
@@ -38,7 +35,7 @@ angular.module('myApp.controllers', []).
 			
 		});
 	}]).
-	controller('ContentController', ['$scope', function ($scope) {
+	controller('ContentController', ['$scope', '$rootScope', 'mailService', function ($scope, $rootScope, mailService) {
 		$scope.showingReply = false;
 		$scope.reply = {};
 		
@@ -47,6 +44,18 @@ angular.module('myApp.controllers', []).
 			$scope.reply = {};
 			$scope.reply.to = $scope.selectedMail.from.join(", ");
 			$scope.reply.body = "\n\n ---------------------------- \n\n" + $scope.selectedMail.body;
+		};
+		
+		$scope.sendReply = function() {
+			$scope.showingReply = false;
+			$rootScope.loading = true;
+			
+			mailService.sendEmail($scope.reply)
+			.then(function(status) {
+				$rootScope.loading = false;
+			}, function(err) {
+				$rootScope.loading = false;
+			});	
 		};
 		
 		/*  hook into the watch list functionality by using $watch - when watched events are
@@ -60,8 +69,8 @@ angular.module('myApp.controllers', []).
 	}]).
 	controller('SettingsController', ['$scope', function ($scope) {
 		$scope.settings = {
-			name:"Jason",
-			email:"noway@jose.com",
+			name:'Jason',
+			email:'noway@jose.com',
 			age:38
 		}
 				

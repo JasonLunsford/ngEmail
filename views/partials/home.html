@@ -1,11 +1,14 @@
 <div class="small-4 columns" data-ng-controller="MailListingController">
-	<h2>Sidebar</h2>
+	<input type="search" placeholder="Filter Messages by Sender" data-ng-model="search.from" />
+	<input type="search" placeholder="Filter Messages by Subject" data-ng-model="search.subject" />
+	{{ search }}
 	<ul id="emailListing">
 		<!-- if more sophisticated interactions needed, we could created a special
 			 controller per iteration for each mail item via ng-controller. But
 			 because this is a simple application the ng-click directive is
-			 adequate. -->
-		<li data-ng-repeat="mail in email" data-ng-click="setSelectedMail(mail)">
+			 adequate. Also, note use of orderBy filter, ordering by an element common in each array,
+			 and passing "true" ensures results will be displayed in descending (newest->oldest) order -->
+		<li data-ng-repeat="mail in (email | orderBy:'sent_at':true | filter:search)" data-ng-click="setSelectedMail(mail)">
 			<!-- {selected: } is an example of an Angular expression, which in this case
 				 applies the .selected class to the element when isSelected(mail) returns true -->
 			<div class="container emailListing" data-ng-class="{selected: isSelected(mail)}">

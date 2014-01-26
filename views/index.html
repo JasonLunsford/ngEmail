@@ -7,7 +7,7 @@
 	<link rel="stylesheet" href="css/foundation.min.css" />
     <link rel="stylesheet" href="css/app.css" />
 </head>
-<body ng-controller='HomeController'>
+<body data-ng-controller='HomeController'>
 
 	<nav class="top-bar">
 		<ul class="title-area">
@@ -19,6 +19,7 @@
 		
 		<section class="top-bar-section">
 			<ul class="right">
+				<li data-ng-show="loading"><img src="images/spinner_32.gif"></li>
 				<li><a href="/"><img src="images/home.gif"/></a></li>
 				<li><a href="/settings"><img src="images/settings.gif"/></a></li>
 			</ul>
@@ -32,5 +33,6 @@
     <script src="js/vendor/angular-sanitize-1.2.9.min.js"></script>
     <script src="js/main.js"></script>
     <script src="js/controllers.js"></script>
+    <script src="js/services.js"></script>
 </body>
 </html>

@@ -28,6 +28,8 @@ app.set('port', process.env.PORT || 3000);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'html');
 app.use(express.logger('dev'));
+app.use(express.urlencoded());
+app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(app.router);
 
@@ -46,6 +48,7 @@ app.get('/partials/:name', routes.partials);
 
 // JSON APIs
 app.get('/api/mail', api.mail);
+app.post('/api/send', api.send);
 
 // redirect all others to the index (HTML5 history)
 app.get('*', routes.index);

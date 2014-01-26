@@ -13,3 +13,12 @@ exports.mailboxes = function(req, res) {
 	});
 	res.json(res.locals.mailboxes);
 };
+
+// simple demonstration of an API replying to a POST request with a 3 sec simulated delay
+exports.send = function(req, res) {
+	setTimeout(function () {
+		res.json({
+			result:'true'
+		});
+	}, 3000);
+};
