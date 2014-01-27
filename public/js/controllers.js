@@ -26,6 +26,7 @@ angular.module('myApp.controllers', []).
 	}]).
 	controller('MailListingController', ['$scope', 'mailService', function ($scope, mailService) {
 		$scope.email = []
+		$scope.nYearsAgo = 11; // establishes baseline years for custom age filter
 
 		mailService.getMail()
 		.success(function(data, status, headers) {
@@ -34,6 +35,15 @@ angular.module('myApp.controllers', []).
 		.error(function(data, status, headers) {
 			
 		});
+		
+		// filter function - each loop item processed thru this function. if output truthy, item is rendered to screen
+		$scope.searchPastNYears = function(email) {
+			var emailSentAtDate = new Date(email.sent_at),
+				nYearsAgoDate = new Date();
+				
+			nYearsAgoDate.setFullYear(nYearsAgoDate.getFullYear() - $scope.nYearsAgo);
+			return emailSentAtDate > nYearsAgoDate;
+		}
 	}]).
 	controller('ContentController', ['$scope', '$rootScope', 'mailService', function ($scope, $rootScope, mailService) {
 		$scope.showingReply = false;
