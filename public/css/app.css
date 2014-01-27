@@ -38,3 +38,9 @@
 	.emailListing .subject {
 		font-size:0.8em;
 	}
+	.emailListing:hover {
+		background-color:#eeeeee;
+	}
+	#emailListing .selected {
+		background-color:#bbbbbb;
+	}

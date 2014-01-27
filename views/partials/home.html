@@ -5,6 +5,7 @@
 			 and passing "true" ensures results will be displayed in descending (newest->oldest) order 
 			 finally searchPastNYears is a custom filter function, defined in the Controller-->
 		<li email-listing email="mail"
+			gravatar-size="20"
 			action="setSelectedMail(selectedMail)"
 			data-ng-repeat="mail in (email | orderBy:'sent_at':true | filter:searchPastNYears )">
 		</li>
