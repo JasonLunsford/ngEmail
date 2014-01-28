@@ -1,5 +1,5 @@
 <div class="small-4 columns" data-ng-controller="MailListingController">
-	<input type="number" placeholder="Filter Messages by Years" data-ng-model="nYearsAgo" />
+	<input type="search" placeholder="Email Filter" data-ng-model="search.$" />
 	<ul id="emailListing">
 		<!-- Note use of orderBy filter, ordering by an element common in each array,
 			 and passing "true" ensures results will be displayed in descending (newest->oldest) order 
@@ -7,7 +7,7 @@
 		<li email-listing email="mail"
 			gravatar-size="20"
 			action="setSelectedMail(selectedMail)"
-			data-ng-repeat="mail in (email | orderBy:'sent_at':true | filter:searchPastNYears )">
+			data-ng-repeat="mail in (email | orderBy:'sent_at':true | filter:search )">
 		</li>
 	</ul>
 </div>

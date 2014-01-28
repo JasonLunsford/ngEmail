@@ -14,7 +14,9 @@ angular.module('myApp.directives', []).
 				shouldUseGravatar: '@', // accept a string as a parameter
 				gravatarSize: '@'
 			},
+			transclude: true, // transclude is false by default
 			templateUrl: 'partials/emailListing.html',
+			// "transclusion" is a fancy word for including DOM elements inside directive
 			controller: ['$scope', '$element', '$attrs', '$transclude',
 				function($scope, $element, $attrs, $transclude) {
 					
