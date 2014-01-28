@@ -1,20 +1,7 @@
 {
-	"mailboxes": [
-		{
-			"name": "inbox",
-			"type": "default"
-		},
-		{
-			"name": "starred", 
-			"type": "default"
-		},
-		{
-			"name": "important", 
-			"type": "default"
-		},
-		{
-			"name": "drafts", 
-			"type": "default"
-		}
-	]
-}
+  "mailboxes": [
+  {"name": "inbox", "id": 1},
+  {"name": "starred", "id": 2},
+  {"name": "important", "id": 3},
+  {"name": "drafts", "id": 4}
+]}

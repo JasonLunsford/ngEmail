@@ -1,8 +1,9 @@
 'use strict';
 
 angular.module('myApp.controllers', []).
-	controller('HomeController', ['$scope', '$sce', function ($scope, $sce) {
+	controller('HomeController', ['$scope', '$sce', 'keyboardService', function ($scope, $sce, keyboardService) {
 		$scope.selectedMail = "";
+		
 		
 		/* called from home.html, typically handled by MailListingController, but works here
 		   because Angular "walk ups" the controller heirarchy when / if it fails to find
@@ -57,6 +58,7 @@ angular.module('myApp.controllers', []).
 		};
 		
 		$scope.sendReply = function() {
+			console.log("Sending reply.");
 			$scope.showingReply = false;
 			$rootScope.loading = true;
 			
