@@ -1,78 +1,69 @@
 <div class="row">
-	<h1>Update your settings</h1>
-	<form name="settingsForm" novalidate >
-		<fieldset>
-			<legend>Update Settings</legend>
-			
-			<div class="row">
-				<div class="small-8 columns">
-					<label>Name</label>
-					<input type="text"
-						   placeholder="Name"
-						   name="name"
-						   data-ng-model="settings.name"
-						   data-ng-minlength=3
-						   data-ng-maxlength=20
-						   data-ng-pattern="/^[a-zA-Z]+$/"
-						   required />
-					<!-- if $dirty (something was typed at some point) and $invalid (a rule failed) -->
-					<div data-ng-show="settingsForm.name.$dirty && settingsForm.name.$invalid">
-						<!-- $error is an object, each form attribute is a method on that object -->
-						<div data-ng-show="settingsForm.name.$error.required">Your name is required.</div>
-						<div data-ng-show="settingsForm.name.$error.minlength">Your name is too short.</div>
-						<div data-ng-show="settingsForm.name.$error.maxlength">Your name is way too long.</div>
-					</div>
+	<div class="col-sm-4 col-sm-offset-4">
+		<h1>Update your settings</h1>
+		<form name="settingsForm" role="form" class="settingsForm" novalidate >
+			<div class="form-group">
+				<label>Name</label>
+				<input type="text"
+					   placeholder="Name"
+					   name="name"
+					   class="form-control"
+					   data-ng-model="settings.name"
+					   data-ng-minlength=3
+					   data-ng-maxlength=20
+					   data-ng-pattern="/^[a-zA-Z]+$/"
+					   required />
+				<!-- if $dirty (something was typed at some point) and $invalid (a rule failed) -->
+				<div data-ng-show="settingsForm.name.$dirty && settingsForm.name.$invalid" class="alert alert-danger">
+					<!-- $error is an object, each form attribute is a method on that object -->
+					<p data-ng-show="settingsForm.name.$error.required">Your name is required.</p>
+					<p data-ng-show="settingsForm.name.$error.minlength">Your name is too short.</p>
+					<p data-ng-show="settingsForm.name.$error.maxlength">Your name is way too long.</p>
 				</div>
 			</div>
 			
-			<div class="row">
-				<div class="small-8 columns">
-					<label>Email</label>
-					<input type="email"
-						   placeholder="Email"
-						   name="email"
-						   data-ng-model="settings.email"
-						   required />
-					<!-- if $dirty (something was typed at some point) and $invalid (a rule failed) -->
-					<div data-ng-show="settingsForm.email.$dirty && settingsForm.email.$invalid">
-						<!-- $error is an object, each form attribute is a method on that object -->
-						<div data-ng-show="settingsForm.email.$error.required">Your email address is required.</div>
-						<div data-ng-show="settingsForm.email.$error.email">Invalid email address format.</div>
-					</div>
+			<div class="form-group">
+				<label>Email</label>
+				<input type="email"
+					   placeholder="Email"
+					   name="email"
+					   class="form-control"
+					   data-ng-model="settings.email"
+					   required />
+				<!-- if $dirty (something was typed at some point) and $invalid (a rule failed) -->
+				<div data-ng-show="settingsForm.email.$dirty && settingsForm.email.$invalid" class="alert alert-danger">
+					<!-- $error is an object, each form attribute is a method on that object -->
+					<p data-ng-show="settingsForm.email.$error.required">Your email address is required.</p>
+					<p data-ng-show="settingsForm.email.$error.email">Invalid email address format.</p>
 				</div>
 			</div>
 			
-			<div class="row">
-				<div class="small-8 columns">
-					<label>Age</label>
-					<input type="number"
-						   placeholder="Age"
-						   name="age"
-						   data-ng-model="settings.age"
-						   min=3
-						   max=199
-						   required />
-					<!-- if $dirty (something was typed at some point) and $invalid (a rule failed) -->
-					<div data-ng-show="settingsForm.age.$dirty && settingsForm.age.$invalid">
-						<!-- $error is an object, each form attribute is a method on that object -->
-						<div data-ng-show="settingsForm.age.$error.required">Your age is required.</div>
-						<div data-ng-show="settingsForm.age.$error.min">You must be at least 3 years old to use this site.</div>
-						<div data-ng-show="settingsForm.age.$error.max">You are 200 or older? Really?</div>
-					</div>
+			<div class="form-group">
+				<label>Age</label>
+				<input type="number"
+					   placeholder="Age"
+					   name="age"
+					   class="form-control"
+					   data-ng-model="settings.age"
+					   min=3
+					   max=199
+					   required />
+				<!-- if $dirty (something was typed at some point) and $invalid (a rule failed) -->
+				<div data-ng-show="settingsForm.age.$dirty && settingsForm.age.$invalid" class="alert alert-danger">
+					<!-- $error is an object, each form attribute is a method on that object -->
+					<p data-ng-show="settingsForm.age.$error.required">Your age is required.</p>
+					<p data-ng-show="settingsForm.age.$error.number">Invalid characters.</p>
+					<p data-ng-show="settingsForm.age.$error.min">You must be at least 3 years old to use this site.</p>
+					<p data-ng-show="settingsForm.age.$error.max">You are 200 or older? Really?</p>
 				</div>
 			</div>
 			
-			<div class="row">
-				<div class="push-9 small-3">
-					<button type="submit"
-							class="button"
-							data-ng-click="updateSettings()"
-							data-ng-disabled="settingsForm.$invalid">Update</button>
-				</div>
+			<div class="form-group">
+				<button type="submit"
+						class="btn btn-primary btn-lg pull-right"
+						data-ng-click="updateSettings()"
+						data-ng-disabled="settingsForm.$invalid">Update</button>
 			</div>
-			
-		</fieldset>
-	</form>
+		</form>
+	</div>
 </div>
-
-

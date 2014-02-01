@@ -4,29 +4,27 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title><%= title %></title>
 
-	<link rel="stylesheet" href="css/foundation.min.css" />
+	<link rel="stylesheet" href="css/bootstrap.css" />
     <link rel="stylesheet" href="css/app.css" />
 </head>
 <body data-ng-controller='HomeController'>
 
-	<nav class="top-bar">
-		<ul class="title-area">
-			<!-- Title Area -->
-			<li class="name">
-				<h1><a><%= title %></a></h1>
-			</li>
-		</ul>
-		
-		<section class="top-bar-section">
-			<ul class="right">
-				<li data-ng-show="loading"><img src="images/spinner_32.gif"></li>
-				<li><a href="/"><img src="images/home.gif"/></a></li>
-				<li><a href="/settings"><img src="images/settings.gif"/></a></li>
-			</ul>
-		</section>
+	<nav class="navbar navbar-inverse navbar-fixed-top simpleHeader" role="navigation">
+		<div class="container-fluid">
+			<a href="/" class="mastHead"><%= title %></a>
+
+			<div class="navbar-right pull-right iconMenu">
+				<ul class="nav navbar-nav">
+					<li data-ng-show="loading"><img src="images/spinner_32.gif"></li>
+					<li><a href="/"><img src="images/home1.gif" class="bottomCorner"/></a></li>
+					<li><a href="/settings"><img src="images/settings.gif" class="topCorner"/></a></li>
+				</ul>
+			</div>
+		</div>
 	</nav>
 
-    <div data-ng-view></div>
+    <div data-ng-view class="container-fluid bigWrapper"></div>
+
 
     <script src="js/vendor/angular-1.2.9.js"></script>
     <script src="js/vendor/angular-route-1.2.9.js"></script>

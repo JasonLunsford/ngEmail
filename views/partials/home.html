@@ -1,49 +1,65 @@
-<div class="small-4 columns" data-ng-controller="MailListingController">
-	<input type="search" placeholder="Email Filter" data-ng-model="search.$" />
-	<ul id="emailListing">
-		<!-- Note use of orderBy filter, ordering by an element common in each array,
-			 and passing "true" ensures results will be displayed in descending (newest->oldest) order 
-			 finally searchPastNYears is a custom filter function, defined in the Controller-->
-		<li email-listing email="mail"
-			gravatar-size="20"
-			action="setSelectedMail(selectedMail)"
-			data-ng-repeat="mail in (email | orderBy:'sent_at':true | filter:search )">
-		</li>
-	</ul>
-</div>
-
-<div class="small-8 columns" data-ng-controller="ContentController">
-	<div data-ng-show="!selectedMail">
-		<h2>No Conversations Selected</h2>
+<div class="row">
+	<div class="col-sm-3 maxViewPort">
+		<div class="row">
+			<h2 class="col-sm-6">Inbox</h2>
+			<div class="col-sm-6">
+				<button class="btn btn-primary btn-lg pull-right">Compose</button>
+			</div>
+		</div>
 	</div>
-	<div data-ng-show="selectedMail">
-		<form id="replyForm" data-ng-submit="sendEmailReply()" data-ng-show="showingReply">
-			<div class="row collapse">
-				<div class="small-1 columns">
-					<span class="prefix">To</span>
+</div>
+<div class="row">
+	<div data-ng-controller="MailListingController" class="col-sm-3 maxViewPort">
+		<input type="search" placeholder="Email Filter" class="form-control" data-ng-model="search.$" />
+		<ul class="list-group mainEmailList" id="emailListing">
+			<!-- Note use of orderBy filter, ordering by an element common in each array,
+				 and passing "true" ensures results will be displayed in descending (newest->oldest) order 
+				 finally searchPastNYears is a custom filter function, defined in the Controller-->
+			<li class="list-group-item"
+				email-listing email="mail"
+				gravatar-size="20"
+				action="setSelectedMail(selectedMail)"
+				data-ng-repeat="mail in (email | orderBy:'sent_at':true | filter:search )">
+			</li>
+		</ul>
+	</div>
+
+	<div data-ng-controller="ContentController" class="col-sm-8 maxViewPort">
+		<div data-ng-show="!selectedMail" class="row">
+			<h2 class="col-sm-12">No Conversation Selected</h2>
+		</div>
+		<div data-ng-show="selectedMail" class="row">
+			<h2 class="col-sm-12">{{ selectedMail.subject }}</h2>
+			<div class="col-sm-12">
+				<div class="row">
+					<h3 class="col-sm-6">{{ selectedMail.from.join(", ") }}</h3>
+					<h3 class="col-sm-6">{{ selectedMail.sent_at | date:'MM/dd/yy' }}</h3>
 				</div>
-				<div class="small-11 columns">
-					<input data-ng-model="reply.to" type="email" placeholder="">
-				</div>
-				
-				<div class="small-12 columns">
-					<textarea data-ng-model="reply.body"></textarea>
-				</div>
+			</div>
+			<div class="col-sm-12" data-ng-bind-html="selectedMail.body"></div>
+			<div class="col-sm-12">
+				<button class="btn btn-primary pull-left" data-ng-click="toggleReplyForm()">Reply</button>
 			</div>
 			
-			<button class="button radius" data-ng-click="sendReply()">Send</button>
-			<button class="button radius alert" data-ng-click="toggleReplyForm()">Cancel</button>
-		</form>
-		<div class="row header">
-			<div class="small-6 columns">{{ selectedMail.subject }}</div>
-			<div class="small-6 columns">{{ selectedMail.sent_at | date:'MM/dd/yy' }}</div>
+			<form id="replyForm" class="col-sm-12 replyForm" role="form" data-ng-submit="sendEmailReply()" data-ng-show="showingReply">
+				<div class="form-group">
+					<div class="input-group">
+						<span class="input-group-addon">To:</span>
+						<input type="email"
+							   class="form-control"
+							   placeholder=""
+							   data-ng-model="reply.to">
+					</div>
+					<textarea
+							  class="form-control"
+							  data-ng-model="reply.body"></textarea>
+				</div>
+				<div class="form-group">
+					<button class="btn btn-primary btn-lg pull-right" data-ng-click="sendReply()">Send</button>
+					<button class="btn btn-danger btn-lg pull-right" data-ng-click="toggleReplyForm()">Cancel</button>
+				</div>
+			</form>
+
 		</div>
-		<div class="row actions">
-			<div class="small-8 columns">
-				{{ selectedMail.from.join(", ") }} to {{ selectedMail.to }}
-			</div>
-			<a data-ng-click="toggleReplyForm()" class="button radius push-1">Reply</a>
-		</div>
-		<div class="small-12 columns" data-ng-bind-html="selectedMail.body"></div>
 	</div>
 </div>

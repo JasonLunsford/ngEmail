@@ -1,25 +1,98 @@
+/*
+	Simple Email v2.0
 
-/* Settings Page */
-	.ng-pristine fieldset			{ border:1px solid #DDDDDD; }
-	.ng-dirty fieldset				{ border:1px solid red; }
-	.ng-invalid.ng-dirty fieldset	{ border:1px solid red; }
-	.ng-valid.ng-dirty fieldset		{ border:1px solid green; }
+	Author: Jason Lunsford
+	Version: 2.0
+	URL:
+	
+	-----------------------------------------
+	CONTENTS - APP.CSS
+	-----------------------------------------
+	1. GLOBAL LAYOUT
+	2. TYPOGRAPHY
+	3. LINKS & BUTTONS & FORMS
+	4. SITE HEADER & FOOTER
+	5. MAIN CONTENT
 
-	input.ng-invalid-minlength.ng-dirty { border:1px solid blue; }
+*/
 
-/* Home Page */
+/* 1. GLOBAL LAYOUT
+----------------------------------------------------------------------------------------*/
 
-	#sidebar {
-		clear:left;
-		float:left;
-		min-height:300px;
-		position:relative;
-		width:228px;
-		z-index:1;scrs
+	.bigWrapper { margin:66px 0px 0px;}
+
+	.maxViewPort {  }
+
+/* 2. TYPOGRAPHY
+----------------------------------------------------------------------------------------*/
+
+	h2, h3 { font-weight:bold; }
+	h3 { margin-top:0px;}
+
+
+/* 3. LINKS & BUTTONS & FORMS
+----------------------------------------------------------------------------------------*/
+
+	a:hover { outline:0; text-decoration:none; }
+
+/* **************
+	Settings Page
+	************* */
+	.settingsForm input { margin-bottom:5px; }
+
+
+/* **************
+	Home Page
+	************* */
+	.replyForm textarea { height:300px; }
+
+	.replyForm .input-group { margin:5px 0px; }
+
+
+/* 4. SITE HEADER & FOOTER
+----------------------------------------------------------------------------------------*/
+	.simpleHeader {
+		
 	}
 
-	#emailListing {
-		margin:20px 0px 0px 0px;
+	/* Bootstrap over-rides to prevent nav bar wrapping */
+	.iconMenu { display:inline-block; }
+	.iconMenu ul { margin:0px; }
+	.iconMenu ul li { display:inline-block; }
+
+	.simpleHeader img {
+		border:2px solid #222222;
+		height:35px;
+		padding:2px;
+		width:35px;
+	}
+
+	.simpleHeader .bottomCorner:hover {
+		border-left:2px solid #2A6496;
+		border-bottom:2px solid #2A6496;
+	}
+
+	.simpleHeader .topCorner:hover {
+		border-right:2px solid #2A6496;
+		border-top:2px solid #2A6496;
+	}
+
+	.mastHead {
+		color:#f2f2f2;
+		float:left;
+		font-size:32px;
+		line-height:20px;
+		padding:21px 15px 15px 15px;
+	}
+
+/* 5. MAIN CONTENT
+----------------------------------------------------------------------------------------*/
+
+/* **************
+	Home Page
+	************* */
+
+	.mainEmailList {
 		overflow-y:scroll;
 		overflow-x:hidden;
 	}
@@ -41,6 +114,6 @@
 	.emailListing:hover {
 		background-color:#eeeeee;
 	}
-	#emailListing .selected {
+	.mainEmailList .selected {
 		background-color:#bbbbbb;
 	}
