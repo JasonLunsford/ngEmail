@@ -1,5 +1,5 @@
 <div class="row">
-	<div class="col-sm-3 maxViewPort">
+	<div class="col-sm-3 verticalSpace">
 		<div class="row">
 			<h2 class="col-sm-6">Inbox</h2>
 			<div class="col-sm-6">
@@ -9,7 +9,7 @@
 	</div>
 </div>
 <div class="row">
-	<div data-ng-controller="MailListingController" class="col-sm-3 maxViewPort">
+	<div data-ng-controller="MailListingController" class="col-sm-3">
 		<input type="search" placeholder="Email Filter" class="form-control" data-ng-model="search.$" />
 		<ul class="list-group mainEmailList" id="emailListing">
 			<!-- Note use of orderBy filter, ordering by an element common in each array,
@@ -24,24 +24,27 @@
 		</ul>
 	</div>
 
-	<div data-ng-controller="ContentController" class="col-sm-8 maxViewPort">
+	<div data-ng-controller="ContentController" class="col-sm-8">
 		<div data-ng-show="!selectedMail" class="row">
-			<h2 class="col-sm-12">No Conversation Selected</h2>
+			<h1 class="col-sm-12">No Conversation Selected</h1>
 		</div>
 		<div data-ng-show="selectedMail" class="row">
-			<h2 class="col-sm-12">{{ selectedMail.subject }}</h2>
+			<h1 class="col-sm-12">{{ selectedMail.subject }}</h1>
 			<div class="col-sm-12">
 				<div class="row">
-					<h3 class="col-sm-6">{{ selectedMail.from.join(", ") }}</h3>
-					<h3 class="col-sm-6">{{ selectedMail.sent_at | date:'MM/dd/yy' }}</h3>
+					<h3 class="col-sm-10">{{ selectedMail.from.join(", ") }}</h3>
+					<h3 class="col-sm-2 alignRight">{{ selectedMail.sent_at | date:'MM/dd/yy' }}</h3>
 				</div>
 			</div>
-			<div class="col-sm-12" data-ng-bind-html="selectedMail.body"></div>
+			<div class="col-sm-12 emailBodyCopy" data-ng-bind-html="selectedMail.body"></div>
 			<div class="col-sm-12">
-				<button class="btn btn-primary pull-left" data-ng-click="toggleReplyForm()">Reply</button>
+				<button class="btn btn-primary pull-left" data-ng-click="toggleReply()">Reply</button>
+				<button class="btn btn-primary pull-left leftSpace" data-ng-click="toggleReplyAll()">Reply All</button>
+				<button class="btn btn-primary pull-left leftSpace" data-ng-click="toggleForward()">Forward</button>
+				<button class="btn btn-primary pull-left leftSpace" data-ng-click="downloadAttachment()">Download Attachment</button>
 			</div>
 			
-			<form id="replyForm" class="col-sm-12 replyForm" role="form" data-ng-submit="sendEmailReply()" data-ng-show="showingReply">
+			<form id="replyForm" class="col-sm-12 replyForm verticalSpace" role="form" data-ng-submit="sendEmailReply()" data-ng-show="showingReply">
 				<div class="form-group">
 					<div class="input-group">
 						<span class="input-group-addon">To:</span>
@@ -55,8 +58,8 @@
 							  data-ng-model="reply.body"></textarea>
 				</div>
 				<div class="form-group">
-					<button class="btn btn-primary btn-lg pull-right" data-ng-click="sendReply()">Send</button>
-					<button class="btn btn-danger btn-lg pull-right" data-ng-click="toggleReplyForm()">Cancel</button>
+					<button class="btn btn-primary btn-lg pull-right leftSpace" data-ng-click="sendReply()">Send</button>
+					<button class="btn btn-danger btn-lg pull-right" data-ng-click="toggleReply()">Cancel</button>
 				</div>
 			</form>
 

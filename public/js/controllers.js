@@ -50,11 +50,29 @@ angular.module('myApp.controllers', []).
 		$scope.showingReply = false;
 		$scope.reply = {};
 		
-		$scope.toggleReplyForm = function() {
+		$scope.toggleReply = function() {
 			$scope.showingReply = !$scope.showingReply;
 			$scope.reply = {};
 			$scope.reply.to = $scope.selectedMail.from.join(", ");
 			$scope.reply.body = "\n\n ---------------------------- \n\n" + $scope.selectedMail.body;
+		};
+
+		$scope.toggleReplyAll = function() {
+			$scope.showingReply = !$scope.showingReply;
+			$scope.reply = {};
+			$scope.reply.to = $scope.selectedMail.from.join(", ");
+			$scope.reply.body = "\n\n ---------------------------- \n\n" + $scope.selectedMail.body;
+		};
+
+		$scope.toggleForward = function() {
+			$scope.showingReply = !$scope.showingReply;
+			$scope.reply = {};
+			$scope.reply.to = $scope.selectedMail.from.join(", ");
+			$scope.reply.body = "\n\n ---------------------------- \n\n" + $scope.selectedMail.body;
+		};
+
+		$scope.downloadAttachment = function() {
+			console.log( "Download Attachment clicked." );
 		};
 		
 		$scope.sendReply = function() {
