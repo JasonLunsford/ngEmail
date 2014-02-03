@@ -121,7 +121,8 @@
 	.searchFilters span { margin-right:10px; }
 
 	.mainEmailList {
-		height:600px;
+		height:550px;
+		overflow-y:scroll;
 	}
 	.emailListing {
 		border-radius:3px;
