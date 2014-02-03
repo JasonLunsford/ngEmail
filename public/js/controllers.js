@@ -87,6 +87,10 @@ angular.module('myApp.controllers', []).
 				$rootScope.loading = false;
 			});	
 		};
+
+		$scope.attachFile = function() {
+			console.log( "Attach File clicked." );
+		}
 		
 		/*  hook into the watch list functionality by using $watch - when watched events are
 			detected an angular event digest loop is triggered, in this case setting $scope.showingReply

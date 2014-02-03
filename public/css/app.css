@@ -19,7 +19,7 @@
 /* 1. GLOBAL LAYOUT
 ----------------------------------------------------------------------------------------*/
 
-	.bigWrapper { margin:66px 0px 0px;}
+	.bigWrapper { margin:66px 0px 0px; overflow-x:hidden; }
 
 /* 2. TYPOGRAPHY
 ----------------------------------------------------------------------------------------*/
@@ -88,7 +88,7 @@
 	Global Helpers
 	************* */
 
-	.verticalSpace { margin:20px 0px; }
+	.verticalSpace { margin-top:20px; margin-bottom:20px; }
 
 	.leftSpace { margin-left:15px; }
 
@@ -109,15 +109,24 @@
 	Side Bar
 	************* */
 
+	.bottomSpace { margin-bottom:20px; }
+	.stripLeftPadding { padding-left:0px; }
+
+	.searchFilters {
+		height:35px;
+		line-height:35px;
+	}
+
+	.searchFilters input[type="checkbox"] { margin-top:9px; }
+	.searchFilters span { margin-right:10px; }
+
 	.mainEmailList {
-		overflow-y:scroll;
-		overflow-x:hidden;
+		height:600px;
 	}
 	.emailListing {
 		border-radius:3px;
 		height:120px;
 		overflow:hidden;
-		padding:13px;
 	}
 	.emailListing img { }
 	.emailListing .date {
@@ -128,7 +137,7 @@
 	.emailListing .subject {
 		font-size:0.8em;
 	}
-	.emailListing:hover {
+	.mainEmailList li:hover {
 		background-color:#eeeeee;
 	}
 	.mainEmailList .selected {

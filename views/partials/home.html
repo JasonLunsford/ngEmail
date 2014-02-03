@@ -1,8 +1,8 @@
 <div class="row">
 	<div class="col-sm-3 verticalSpace">
 		<div class="row">
-			<h2 class="col-sm-6">Inbox</h2>
-			<div class="col-sm-6">
+			<h2 class="col-sm-6 col-sm-offset-1 stripLeftPadding">Inbox</h2>
+			<div class="col-sm-5">
 				<button class="btn btn-primary btn-lg pull-right">Compose</button>
 			</div>
 		</div>
@@ -10,18 +10,43 @@
 </div>
 <div class="row">
 	<div data-ng-controller="MailListingController" class="col-sm-3">
-		<input type="search" placeholder="Email Filter" class="form-control" data-ng-model="search.$" />
-		<ul class="list-group mainEmailList" id="emailListing">
-			<!-- Note use of orderBy filter, ordering by an element common in each array,
-				 and passing "true" ensures results will be displayed in descending (newest->oldest) order 
-				 finally searchPastNYears is a custom filter function, defined in the Controller-->
-			<li class="list-group-item"
-				email-listing email="mail"
-				gravatar-size="20"
-				action="setSelectedMail(selectedMail)"
-				data-ng-repeat="mail in (email | orderBy:'sent_at':true | filter:search )">
-			</li>
-		</ul>
+		<div class="row">
+			<div class="col-sm-11 col-sm-offset-1 stripLeftPadding">
+				<input type="search" placeholder="Email Filter" class="form-control" data-ng-model="search.$"/>
+				<div class="searchFilters">
+					<span>Filter by:</span>
+					<label class="checkbox-inline">
+						<input type="checkbox" value="option1"> All
+					</label>
+					<label class="checkbox-inline">
+						<input type="checkbox" value="option2"> Sender
+					</label>
+					<label class="checkbox-inline">
+						<input type="checkbox" value="option3"> Date
+					</label>
+					<label class="checkbox-inline">
+						<input type="checkbox" value="option4"> Subject
+					</label>
+				</div>
+			</div>
+			<div class="col-sm-11 col-sm-offset-1 stripLeftPadding verticalSpace">
+				<button class="btn btn-primary">Spam</button>
+				<button class="btn btn-danger leftSpace">Delete</button>
+				<button class="btn btn-primary leftSpace">Mark As Unread</button>
+				<button class="btn btn-primary leftSpace">Select All</button>
+			</div>
+			<ul class="col-sm-11 col-sm-offset-1 list-group mainEmailList" id="emailListing">
+				<!-- Note use of orderBy filter, ordering by an element common in each array,
+					 and passing "true" ensures results will be displayed in descending (newest->oldest) order 
+					 finally searchPastNYears is a custom filter function, defined in the Controller-->
+				<li class="list-group-item"
+					email-listing email="mail"
+					gravatar-size="20"
+					action="setSelectedMail(selectedMail)"
+					data-ng-repeat="mail in (email | orderBy:'sent_at':true | filter:search )">
+				</li>
+			</ul>
+		</div>
 	</div>
 
 	<div data-ng-controller="ContentController" class="col-sm-8">
@@ -36,12 +61,14 @@
 					<h3 class="col-sm-2 alignRight">{{ selectedMail.sent_at | date:'MM/dd/yy' }}</h3>
 				</div>
 			</div>
-			<div class="col-sm-12 emailBodyCopy" data-ng-bind-html="selectedMail.body"></div>
+			<div class="col-sm-12 emailBodyCopy">
+				<p data-ng-bind-html="selectedMail.body"></p>
+			</div>
 			<div class="col-sm-12">
 				<button class="btn btn-primary pull-left" data-ng-click="toggleReply()">Reply</button>
 				<button class="btn btn-primary pull-left leftSpace" data-ng-click="toggleReplyAll()">Reply All</button>
 				<button class="btn btn-primary pull-left leftSpace" data-ng-click="toggleForward()">Forward</button>
-				<button class="btn btn-primary pull-left leftSpace" data-ng-click="downloadAttachment()">Download Attachment</button>
+				<button class="btn btn-primary pull-right" data-ng-click="downloadAttachment()">Download Attachment</button>
 			</div>
 			
 			<form id="replyForm" class="col-sm-12 replyForm verticalSpace" role="form" data-ng-submit="sendEmailReply()" data-ng-show="showingReply">
@@ -60,6 +87,7 @@
 				<div class="form-group">
 					<button class="btn btn-primary btn-lg pull-right leftSpace" data-ng-click="sendReply()">Send</button>
 					<button class="btn btn-danger btn-lg pull-right" data-ng-click="toggleReply()">Cancel</button>
+					<button class="btn btn-primary btn-lg pull-left" data-ng-click="attachFile()">Attach File</button>
 				</div>
 			</form>
 
