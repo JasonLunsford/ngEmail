@@ -1,6 +1,11 @@
 <div class="emailListing" data-ng-click="handleClick()">
 	<div data-ng-transclude></div>
-	<img data-ng-src="{{ gravatarImage }}" alt="{{ email.from[0] }}" />
-	<span class="fromLine"><b>{{ email.from.join(", ") }}</b> to <b>{{ email.to }}</b></span>
-	<span class="subject">{{ email.subject }}</span>
+	<p class="from">
+		<img class="pull-left" data-ng-src="{{ gravatarImage }}" alt="{{ email.from[0] }}" />
+		{{ email.from_name }}
+		<span class="date">{{ email.sent_at | date:'MM/dd/yyyy' }}</span>
+	</p>
+	<input type="checkbox" class="pull-right" value="{{ email.id }}">
+	<p class="subject">{{ email.subject }}</p>
+	<p data-ng-bind-html="email.body" class="body"></p>
 </div>

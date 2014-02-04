@@ -1,5 +1,5 @@
 <div class="row">
-	<div class="col-sm-3 verticalSpace">
+	<div class="col-sm-7 col-md-6 col-lg-4 verticalSpace">
 		<div class="row">
 			<h2 class="col-sm-6 col-sm-offset-1 stripLeftPadding">Inbox</h2>
 			<div class="col-sm-5">
@@ -9,7 +9,7 @@
 	</div>
 </div>
 <div class="row">
-	<div data-ng-controller="MailListingController" class="col-sm-3">
+	<div data-ng-controller="MailListingController" class="col-sm-7 col-md-6 col-lg-4">
 		<div class="row">
 			<div class="col-sm-11 col-sm-offset-1 stripLeftPadding">
 				<input type="search" placeholder="Email Filter" class="form-control" data-ng-model="search.$"/>
@@ -49,29 +49,29 @@
 		</div>
 	</div>
 
-	<div data-ng-controller="ContentController" class="col-sm-8">
+	<div data-ng-controller="ContentController" class="col-sm-5 col-md-6 col-lg-8">
 		<div data-ng-show="!selectedMail" class="row">
-			<h1 class="col-sm-12">No Conversation Selected</h1>
+			<h1 class="col-sm-11">No Conversation Selected</h1>
 		</div>
 		<div data-ng-show="selectedMail" class="row">
-			<h1 class="col-sm-12">{{ selectedMail.subject }}</h1>
-			<div class="col-sm-12">
+			<h1 class="col-sm-11">{{ selectedMail.subject }}</h1>
+			<div class="col-sm-11">
 				<div class="row">
-					<h3 class="col-sm-10">{{ selectedMail.from_name }} ({{ selectedMail.from.join(", ") }})</h3>
-					<h3 class="col-sm-2 alignRight">{{ selectedMail.sent_at | date:'MM/dd/yyyy' }}</h3>
+					<h3 class="col-sm-6 col-md-7 col-lg-8">{{ selectedMail.from_name }} ({{ selectedMail.from.join(", ") }})</h3>
+					<h3 class="col-sm-6 col-md-5 col-lg-4 alignRight">{{ selectedMail.sent_at | date:"MM/dd/yyyy '@' HH:mm:ss" }}</h3>
 				</div>
 			</div>
-			<div class="col-sm-12 emailBodyCopy">
+			<div class="col-sm-11 emailBodyCopy">
 				<p data-ng-bind-html="selectedMail.body"></p>
 			</div>
-			<div class="col-sm-12">
+			<div class="col-sm-11">
 				<button class="btn btn-primary pull-left" data-ng-click="toggleReply()">Reply</button>
 				<button class="btn btn-primary pull-left leftSpace" data-ng-click="toggleReplyAll()">Reply All</button>
 				<button class="btn btn-primary pull-left leftSpace" data-ng-click="toggleForward()">Forward</button>
 				<button class="btn btn-primary pull-right" data-ng-click="downloadAttachment()">Download Attachment</button>
 			</div>
 			
-			<form id="replyForm" class="col-sm-12 replyForm verticalSpace" role="form" data-ng-submit="sendEmailReply()" data-ng-show="showingReply">
+			<form id="replyForm" class="col-sm-11 replyForm verticalSpace" role="form" data-ng-submit="sendEmailReply()" data-ng-show="showingReply">
 				<div class="form-group">
 					<div class="input-group">
 						<span class="input-group-addon">To:</span>

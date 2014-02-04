@@ -32,6 +32,8 @@
 /* 3. LINKS & BUTTONS & FORMS
 ----------------------------------------------------------------------------------------*/
 
+	textarea { resize:none; }
+
 	a:hover { outline:0; text-decoration:none; }
 
 /* **************
@@ -126,18 +128,30 @@
 	}
 	.emailListing {
 		border-radius:3px;
-		height:120px;
+		height:80px;
 		overflow:hidden;
 	}
-	.emailListing img { }
+	.emailListing img { margin-right:5px; }
+	.emailListing .from {
+		display:inline-block;
+		height: 20px;
+		line-height: 20px;
+		width: 93%;
+	}
 	.emailListing .date {
-		color:blue;
-		display:none;
-		font-size:0.5em;
+		color:#285E8E;
+		float:right;
 	}
 	.emailListing .subject {
-		font-size:0.8em;
+
 	}
+	.emailListing .body {
+		font-style:italic;
+		height:20px;
+		overflow:hidden;
+		width:100%;
+	}
+	.emailListing input[type="checkbox"] { margin-top:1px; }
 	.mainEmailList li:hover {
 		background-color:#eeeeee;
 	}
