@@ -57,8 +57,8 @@
 			<h1 class="col-sm-12">{{ selectedMail.subject }}</h1>
 			<div class="col-sm-12">
 				<div class="row">
-					<h3 class="col-sm-10">{{ selectedMail.from.join(", ") }}</h3>
-					<h3 class="col-sm-2 alignRight">{{ selectedMail.sent_at | date:'MM/dd/yy' }}</h3>
+					<h3 class="col-sm-10">{{ selectedMail.from_name }} ({{ selectedMail.from.join(", ") }})</h3>
+					<h3 class="col-sm-2 alignRight">{{ selectedMail.sent_at | date:'MM/dd/yyyy' }}</h3>
 				</div>
 			</div>
 			<div class="col-sm-12 emailBodyCopy">

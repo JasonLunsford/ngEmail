@@ -4,7 +4,7 @@
  *********************/
 
 var express = require('express'),
-	fs 		= require('fs'),
+	fse 	= require('fs-extra'),
 	routes  = require('./routes'),
 	api 	= require('./routes/api'),
 	http    = require('http'),
