@@ -154,7 +154,9 @@
 	.emailListing input[type="checkbox"] { margin-top:1px; }
 	.mainEmailList li:hover {
 		background-color:#eeeeee;
+		cursor:pointer;
 	}
 	.mainEmailList .selected {
 		background-color:#bbbbbb;
 	}
+	.freshEmail { font-weight:bold; }

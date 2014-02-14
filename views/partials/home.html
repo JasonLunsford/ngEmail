@@ -31,7 +31,7 @@
 			</div>
 			<div class="col-sm-11 col-sm-offset-1 stripLeftPadding verticalSpace">
 				<button class="btn btn-primary">Spam</button>
-				<button class="btn btn-danger leftSpace">Delete</button>
+				<button class="btn btn-danger leftSpace" data-ng-click="deleteCheckedEmail()">Delete</button>
 				<button class="btn btn-primary leftSpace">Mark As Unread</button>
 				<button class="btn btn-primary leftSpace">Select All</button>
 			</div>
@@ -39,10 +39,12 @@
 				<!-- Note use of orderBy filter, ordering by an element common in each array,
 					 and passing "true" ensures results will be displayed in descending (newest->oldest) order 
 					 finally searchPastNYears is a custom filter function, defined in the Controller-->
-				<li class="list-group-item"
-					email-listing email="mail"
+				<li class="list-group-item freshEmail"
+					email-listing
+					email="mail"
 					gravatar-size="20"
 					action="setSelectedMail(selectedMail)"
+					ifChecked="updateSelected(myContainer)"
 					data-ng-repeat="mail in (email | orderBy:'sent_at':true | filter:search )">
 				</li>
 			</ul>

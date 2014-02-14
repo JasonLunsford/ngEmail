@@ -9,8 +9,10 @@ angular.module('myApp.directives', []).
 			restrict: 'EA', // include only elements and attributes
 			replace: false,
 			scope: {
-				email: '=', // accept an object as parameter, making the email object available to this isolate scope
-				action: '&', // accept a function as a parameter
+				email: '=',   // accept object as parameter, email object now available to this isolate scope, TWO WAY binding
+				thisContainer: '=',
+				action: '&',  // accept function as parameter, note this is a ONE WAY binding
+				ifChecked: '&',
 				shouldUseGravatar: '@', // accept a string as a parameter
 				gravatarSize: '@'
 			},
@@ -26,6 +28,15 @@ angular.module('myApp.directives', []).
 						//referencing action attribute (setSelectedMail) specified in View, passing object BACK to parent for processing
 						$scope.action({selectedMail: $scope.email});
 					};
+
+					/* pass the entire $event, along with the ID of the specific email */
+					$scope.updateSelection = function($event, mailID) {
+						var checkbox 	  = $event.target;
+						var checkboxState = checkbox.checked;
+						var thisContainer = {"id":mailID, "state":checkboxState};
+
+						$scope.ifChecked({myContainer: thisContainer});
+					}
 					
 				}
 			],
@@ -39,7 +50,7 @@ angular.module('myApp.directives', []).
 				
 				iElement.bind('click', function() {
 					iElement.parent().children().removeClass('selected');
-					iElement.addClass('selected');
+					iElement.removeClass('freshEmail').addClass('selected');
 				});
 			}
 		}

@@ -2,8 +2,9 @@
 
 angular.module('myApp.controllers', []).
 	controller('HomeController', ['$scope', '$sce', 'keyboardService', function ($scope, $sce, keyboardService) {
+		$scope.checkedEmail = [];
+		$scope.myContainer  = "";
 		$scope.selectedMail = "";
-		
 		
 		/* called from home.html, typically handled by MailListingController, but works here
 		   because Angular "walk ups" the controller heirarchy when / if it fails to find
@@ -24,10 +25,23 @@ angular.module('myApp.controllers', []).
 			}
 		};
 
+		$scope.updateSelected = function(myContainer) {
+			$scope.myContainer = myContainer;
+			console.log(myContainer.id+", "+myContainer.state);
+			if ( myContainer.state ) {
+				$scope.checkedEmail.push(myContainer.id);
+			} else {
+				$scope.checkedEmail.splice(myContainer.id, "");
+			}
+		}
+
+		$scope.deleteCheckedEmail = function() {
+			console.log($scope.myContainer);
+		};
+
 	}]).
 	controller('MailListingController', ['$scope', 'mailService', function ($scope, mailService) {
-		$scope.email = []
-		$scope.nYearsAgo = 11; // establishes baseline years for custom age filter
+		$scope.email = [];
 
 		mailService.getMail()
 		.success(function(data, status, headers) {
@@ -36,15 +50,7 @@ angular.module('myApp.controllers', []).
 		.error(function(data, status, headers) {
 			
 		});
-		
-		// filter function - each loop item processed thru this function. if output truthy, item is rendered to screen
-		$scope.searchPastNYears = function(email) {
-			var emailSentAtDate = new Date(email.sent_at),
-				nYearsAgoDate = new Date();
-				
-			nYearsAgoDate.setFullYear(nYearsAgoDate.getFullYear() - $scope.nYearsAgo);
-			return emailSentAtDate > nYearsAgoDate;
-		}
+
 	}]).
 	controller('ContentController', ['$scope', '$rootScope', 'mailService', function ($scope, $rootScope, mailService) {
 		$scope.showingReply = false;
