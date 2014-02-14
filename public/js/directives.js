@@ -10,9 +10,8 @@ angular.module('myApp.directives', []).
 			replace: false,
 			scope: {
 				email: '=',   // accept object as parameter, email object now available to this isolate scope, TWO WAY binding
-				thisContainer: '=',
 				action: '&',  // accept function as parameter, note this is a ONE WAY binding
-				ifChecked: '&',
+				checked: '&',
 				shouldUseGravatar: '@', // accept a string as a parameter
 				gravatarSize: '@'
 			},
@@ -31,11 +30,12 @@ angular.module('myApp.directives', []).
 
 					/* pass the entire $event, along with the ID of the specific email */
 					$scope.updateSelection = function($event, mailID) {
-						var checkbox 	  = $event.target;
-						var checkboxState = checkbox.checked;
-						var thisContainer = {"id":mailID, "state":checkboxState};
-
-						$scope.ifChecked({myContainer: thisContainer});
+						var checkbox 	     = $event.target;
+						var checkContainer = {
+							"checkID":mailID,
+							"state":checkbox.checked
+						}
+						$scope.checked({checkedEmail: checkContainer});
 					}
 					
 				}

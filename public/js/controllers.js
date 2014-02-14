@@ -2,8 +2,6 @@
 
 angular.module('myApp.controllers', []).
 	controller('HomeController', ['$scope', '$sce', 'keyboardService', function ($scope, $sce, keyboardService) {
-		$scope.checkedEmail = [];
-		$scope.myContainer  = "";
 		$scope.selectedMail = "";
 		
 		/* called from home.html, typically handled by MailListingController, but works here
@@ -25,23 +23,12 @@ angular.module('myApp.controllers', []).
 			}
 		};
 
-		$scope.updateSelected = function(myContainer) {
-			$scope.myContainer = myContainer;
-			console.log(myContainer.id+", "+myContainer.state);
-			if ( myContainer.state ) {
-				$scope.checkedEmail.push(myContainer.id);
-			} else {
-				$scope.checkedEmail.splice(myContainer.id, "");
-			}
-		}
-
-		$scope.deleteCheckedEmail = function() {
-			console.log($scope.myContainer);
-		};
 
 	}]).
 	controller('MailListingController', ['$scope', 'mailService', function ($scope, mailService) {
 		$scope.email = [];
+		$scope.checkedEmail = "";
+		$scope.emailCollect = [];
 
 		mailService.getMail()
 		.success(function(data, status, headers) {
@@ -49,6 +36,27 @@ angular.module('myApp.controllers', []).
 		})
 		.error(function(data, status, headers) {
 			
+		});
+
+		$scope.updateCheckedEmail = function(email) {
+			$scope.checkedEmail = email;
+
+
+		}
+
+		$scope.deleteCheckedEmail = function() {
+
+		};
+
+		$scope.$watch('checkedEmail', function(evt) {
+			if ( $scope.checkedEmail.state ) {
+				$scope.emailCollect.push($scope.checkedEmail.checkID);
+				console.log($scope.emailCollect.length)
+			} else if ( !$scope.checkedEmail.state && $scope.emailCollect.length > 0 ) {
+				$scope.emailCollect.splice($scope.checkedEmail.checkID, "");
+				console.log($scope.emailCollect.length)
+			}
+			$scope.checkedEmail = "";
 		});
 
 	}]).

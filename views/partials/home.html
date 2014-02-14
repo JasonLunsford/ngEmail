@@ -44,7 +44,7 @@
 					email="mail"
 					gravatar-size="20"
 					action="setSelectedMail(selectedMail)"
-					ifChecked="updateSelected(myContainer)"
+					checked="updateCheckedEmail(checkedEmail)"
 					data-ng-repeat="mail in (email | orderBy:'sent_at':true | filter:search )">
 				</li>
 			</ul>
