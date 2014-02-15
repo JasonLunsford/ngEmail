@@ -27,7 +27,6 @@ angular.module('myApp.controllers', []).
 	}]).
 	controller('MailListingController', ['$scope', 'mailService', function ($scope, mailService) {
 		$scope.email = [];
-		$scope.checkedEmail = "";
 		$scope.emailCollect = [];
 
 		mailService.getMail()
@@ -38,26 +37,26 @@ angular.module('myApp.controllers', []).
 			
 		});
 
-		$scope.updateCheckedEmail = function(email) {
-			$scope.checkedEmail = email;
+		$scope.updateCheckedEmail = function(checkedEmail) {
+			var thisID 			= checkedEmail.checkID;
+			var thisState 		= checkedEmail.state;
+			var thisIndex 		= $scope.emailCollect.indexOf(thisID);
 
-
+			if ( thisState && thisIndex === -1 ) {
+				$scope.emailCollect.push(thisID);
+				console.log($scope.emailCollect.length)
+			} else if ( !thisState && thisIndex > -1 ) {
+				$scope.emailCollect.splice(thisID, 1);
+				console.log($scope.emailCollect.length)
+			} else {
+				$scope.emailCollect.length = 0;
+				console.log("array is empty");
+			}
 		}
 
 		$scope.deleteCheckedEmail = function() {
 
 		};
-
-		$scope.$watch('checkedEmail', function(evt) {
-			if ( $scope.checkedEmail.state ) {
-				$scope.emailCollect.push($scope.checkedEmail.checkID);
-				console.log($scope.emailCollect.length)
-			} else if ( !$scope.checkedEmail.state && $scope.emailCollect.length > 0 ) {
-				$scope.emailCollect.splice($scope.checkedEmail.checkID, "");
-				console.log($scope.emailCollect.length)
-			}
-			$scope.checkedEmail = "";
-		});
 
 	}]).
 	controller('ContentController', ['$scope', '$rootScope', 'mailService', function ($scope, $rootScope, mailService) {

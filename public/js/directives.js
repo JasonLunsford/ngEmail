@@ -31,7 +31,7 @@ angular.module('myApp.directives', []).
 					/* pass the entire $event, along with the ID of the specific email */
 					$scope.updateSelection = function($event, mailID) {
 						var checkbox 	     = $event.target;
-						var checkContainer = {
+						var checkContainer 	 = {
 							"checkID":mailID,
 							"state":checkbox.checked
 						}
@@ -40,7 +40,7 @@ angular.module('myApp.directives', []).
 					
 				}
 			],
-			link: function(scope, iElement, iAttrs, controller) {
+			link: function(scope, iElement, iAttrs) {
 				var size = iAttrs.gravatarSize || 80;
 				
 				scope.$watch('gravatarImage', function() {
