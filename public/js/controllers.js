@@ -38,20 +38,17 @@ angular.module('myApp.controllers', []).
 		});
 
 		$scope.updateCheckedEmail = function(checkedEmail) {
-			var thisID 			= checkedEmail.checkID;
-			var thisState 		= checkedEmail.state;
-			var thisIndex 		= $scope.emailCollect.indexOf(thisID);
+			var thisID 	  = checkedEmail.checkID;
+			var thisState = checkedEmail.state;
+			var thisIndex = $scope.emailCollect.indexOf(thisID);
 
 			if ( thisState && thisIndex === -1 ) {
 				$scope.emailCollect.push(thisID);
 				console.log($scope.emailCollect.length)
-			} else if ( !thisState && thisIndex > -1 ) {
-				$scope.emailCollect.splice(thisID, 1);
+			} else if ( !thisState && thisIndex !== -1 ) {
+				$scope.emailCollect.splice(thisIndex, 1);
 				console.log($scope.emailCollect.length)
-			} else {
-				$scope.emailCollect.length = 0;
-				console.log("array is empty");
-			}
+			} 
 		}
 
 		$scope.deleteCheckedEmail = function() {
