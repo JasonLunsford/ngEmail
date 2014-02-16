@@ -37,6 +37,7 @@ angular.module('myApp.controllers', []).
 			
 		});
 
+		// receive object with our checkbox info from directive and manipulate the $scope.emailCollect array accordingly
 		$scope.updateCheckedEmail = function(checkedEmail) {
 			var thisID 	  = checkedEmail.checkID;
 			var thisState = checkedEmail.state;
@@ -44,15 +45,23 @@ angular.module('myApp.controllers', []).
 
 			if ( thisState && thisIndex === -1 ) {
 				$scope.emailCollect.push(thisID);
-				console.log($scope.emailCollect.length)
 			} else if ( !thisState && thisIndex !== -1 ) {
 				$scope.emailCollect.splice(thisIndex, 1);
-				console.log($scope.emailCollect.length)
 			} 
 		}
 
+		// spin thru the $scope.email array and remove those entries where the ID matches the email IDs collected in the
+		// $scope.emailCollect array
 		$scope.deleteCheckedEmail = function() {
-
+			var matchID = "";
+			angular.forEach($scope.email, function(value, key) {
+				matchID = value.id;
+				angular.forEach($scope.emailCollect, function(v, k) {
+					if ( matchID === v ) {
+						$scope.email.splice(key, 1);
+					}
+				})
+			})
 		};
 
 	}]).

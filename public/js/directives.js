@@ -11,7 +11,7 @@ angular.module('myApp.directives', []).
 			scope: {
 				email: '=',   // accept object as parameter, email object now available to this isolate scope, TWO WAY binding
 				action: '&',  // accept function as parameter, note this is a ONE WAY binding
-				checked: '&',
+				checked: '&', // attribute defined on the parent element, associated with the updateCheckedEmail() function
 				shouldUseGravatar: '@', // accept a string as a parameter
 				gravatarSize: '@'
 			},
