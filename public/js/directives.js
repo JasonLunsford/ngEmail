@@ -54,4 +54,28 @@ angular.module('myApp.directives', []).
 				});
 			}
 		}
+	}]).
+	directive('markAsUnread', [function() {
+		return {
+			restrict: 'EA',
+			replace: false,
+			scope:true,
+			link: function(scope, iElement, iAttrs) {
+				iElement.bind('click', function() {
+					var listItems = angular.element(document.getElementsByClassName('list-group-item'));
+
+					angular.forEach(listItems, function(v, k) {
+						var checkBox = angular.element(listItems[k].getElementsByTagName('input'));
+
+						if ( checkBox[0].checked ) {
+							listItems[k].className = listItems[k].className + " freshEmail";
+							checkBox[0].checked = false;
+						}
+
+					})
+					
+
+				});
+			}
+		}
 	}]);
