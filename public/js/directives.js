@@ -32,12 +32,10 @@ angular.module('myApp.directives', []).
 					$scope.updateSelection = function($event, mailID) {
 						var checkbox 	     = $event.target;
 						var checkContainer 	 = {
-							"checkID":mailID,
-							"state":checkbox.checked
+							"checkID":mailID
 						}
 						$scope.checked({checkedEmail: checkContainer});
 					}
-					
 				}
 			],
 			link: function(scope, iElement, iAttrs) {
@@ -71,10 +69,24 @@ angular.module('myApp.directives', []).
 							listItems[k].className = listItems[k].className + " freshEmail";
 							checkBox[0].checked = false;
 						}
-
 					})
-					
+				});
+			}
+		}
+	}]).
+	directive('selectAll', [function() {
+		return {
+			restrict: 'EA',
+			replace: false,
+			scope:true,
+			link: function(scope, iElement, iAttrs) {
+				iElement.bind('click', function() {
+					var listItems = angular.element(document.getElementsByClassName('list-group-item'));
 
+					angular.forEach(listItems, function(v, k) {
+						var checkBox = angular.element(listItems[k].getElementsByTagName('input'));
+						checkBox[0].checked = true;
+					})
 				});
 			}
 		}

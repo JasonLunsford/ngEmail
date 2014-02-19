@@ -7,8 +7,7 @@
 	<input type="checkbox"
 		   class="pull-right"
 		   value="{{ email.id }}"
-		   ng-click="updateSelection($event, email.id)"
-		   ng-checked="isSelected(email.id)">
+		   ng-click="updateSelection($event, email.id)">
 	<p class="subject">{{ email.subject }}</p>
 	<p data-ng-bind-html="email.body" class="body"></p>
 </div>

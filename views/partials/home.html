@@ -18,7 +18,7 @@
 				<button class="btn btn-primary">Spam</button>
 				<button class="btn btn-danger leftSpace" data-ng-click="deleteCheckedEmail()">Delete</button>
 				<button class="btn btn-primary leftSpace" mark-as-unread>Mark As Unread</button>
-				<button class="btn btn-primary leftSpace">Select All</button>
+				<button class="btn btn-primary leftSpace" data-ng-click="selectAllEmails()" select-all>Select All</button>
 			</div>
 			<ul class="col-sm-11 col-sm-offset-1 list-group mainEmailList" id="emailListing">
 				<!-- Note use of orderBy filter, ordering by an element common in each array,

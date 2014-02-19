@@ -39,30 +39,36 @@ angular.module('myApp.controllers', []).
 
 		// receive object with our checkbox info from directive and manipulate the $scope.emailCollect array accordingly
 		$scope.updateCheckedEmail = function(checkedEmail) {
-			var thisID 	  = checkedEmail.checkID;
-			var thisState = checkedEmail.state;
-			var thisIndex = $scope.emailCollect.indexOf(thisID);
+			var thisID = checkedEmail.checkID;
+			
+			if ( $scope.emailCollect[thisID] ) {
+				delete $scope.emailCollect[thisID];
+			} else {
+				$scope.emailCollect[thisID] = true;
+			}
 
-			if ( thisState && thisIndex === -1 ) {
-				$scope.emailCollect.push(thisID);
-			} else if ( !thisState && thisIndex !== -1 ) {
-				$scope.emailCollect.splice(thisIndex, 1);
-			} 
 		}
 
 		// spin thru the $scope.email array and remove those entries where the ID matches the email IDs collected in the
 		// $scope.emailCollect array
 		$scope.deleteCheckedEmail = function() {
-			var matchID = "";
+			var survivingEmails = [];
 			angular.forEach($scope.email, function(value, key) {
-				matchID = value.id;
-				angular.forEach($scope.emailCollect, function(v, k) {
-					if ( matchID === v ) {
-						$scope.email.splice(key, 1);
-					}
-				})
+				if ( !$scope.emailCollect[value.id] ) {
+					survivingEmails.push($scope.email[key]);
+				}
 			})
+			$scope.email = survivingEmails;
 		};
+
+		// clear entries already in $scope.emailCollect, then spin thru the $scope.email array and populate the emailCollect array with
+		// all the ID goodness it can hold. Hopefully all of it.
+		$scope.selectAllEmails = function() {
+			$scope.emailCollect.length = 0;
+			angular.forEach($scope.email, function(value, key) {
+				$scope.emailCollect[value.id] = true;
+			});
+		}
 
 	}]).
 	controller('ContentController', ['$scope', '$rootScope', 'mailService', function ($scope, $rootScope, mailService) {
