@@ -57,9 +57,9 @@ angular.module('myApp.directives', []).
 		return {
 			restrict: 'EA',
 			replace: false,
-			scope:true,
-			link: function(scope, iElement, iAttrs) {
-				iElement.bind('click', function() {
+			scope: true,
+			link: function(scope, element, attrs) {
+				element.bind('click', function() {
 					var listItems = angular.element(document.getElementsByClassName('list-group-item'));
 
 					angular.forEach(listItems, function(v, k) {
@@ -78,9 +78,9 @@ angular.module('myApp.directives', []).
 		return {
 			restrict: 'EA',
 			replace: false,
-			scope:true,
-			link: function(scope, iElement, iAttrs) {
-				iElement.bind('click', function() {
+			scope: true,
+			link: function(scope, element, attrs) {
+				element.bind('click', function() {
 					var listItems = angular.element(document.getElementsByClassName('list-group-item'));
 
 					angular.forEach(listItems, function(v, k) {
@@ -88,6 +88,26 @@ angular.module('myApp.directives', []).
 						checkBox[0].checked = true;
 					})
 				});
+			}
+		}
+	}]).
+	// this directive only works because I am not creating an isolated or inherited scope - instead I am using the surrounding scope. why?
+	// because the <li> elements already have isolate scopes attached, and you can only attach one isolate and/or one inherited scope per element.
+	// technically what I am doing here could cause problems and make code recycling difficult, but in this use case (needing to run after ng-repeat finishes)
+	// i'm cool with the risk.
+	directive('onFinishRender', ['$timeout', function($timeout) {
+		return {
+			restrict: 'EA',
+			replace: false,
+			link: function(scope, element, attrs) {
+
+				if ( scope.$last === true ) {
+					element.parent().children().eq(0).removeClass('freshEmail').addClass('selected');
+					// need to either fake a click or pass the real selected email object back to controller
+					$timeout(function () {
+						scope.$emit('ngRepeatFinished');
+					});
+				}
 			}
 		}
 	}]);

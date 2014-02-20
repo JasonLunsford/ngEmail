@@ -30,6 +30,7 @@
 					gravatar-size="20"
 					action="setSelectedMail(selectedMail)"
 					checked="updateCheckedEmail(checkedEmail)"
+					on-finish-render="renderFinished()"
 					data-ng-repeat="mail in (email | orderBy:'sent_at':true | filter:search )">
 				</li>
 			</ul>

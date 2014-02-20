@@ -37,6 +37,11 @@ angular.module('myApp.controllers', []).
 			
 		});
 
+		// catch ngRepeatFinished signal so we can act after emails have been rendered
+		$scope.$on('ngRepeatFinished', function(ngRepeatFinishedEvent) {
+			console.log("signal caught");
+		});
+
 		// receive object with our checkbox info from directive and manipulate the $scope.emailCollect hash accordingly
 		$scope.updateCheckedEmail = function(checkedEmail) {
 			var thisID = checkedEmail.checkID;
