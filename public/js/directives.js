@@ -102,10 +102,12 @@ angular.module('myApp.directives', []).
 			link: function(scope, element, attrs) {
 
 				if ( scope.$last === true ) {
-					element.parent().children().eq(0).removeClass('freshEmail').addClass('selected');
-					// need to either fake a click or pass the real selected email object back to controller
+					// timeout works here because it waits until after the end of the current digest cycle, and will trigger $apply internally,
+					// unlike setTimeout
 					$timeout(function () {
-						scope.$emit('ngRepeatFinished');
+						// mark the item as selected and trigger the click action after emails are done rendering
+						element.parent().children().eq(0).removeClass('freshEmail').addClass('selected');
+						element.parent().children().eq(0).children().eq(0).triggerHandler('click');
 					});
 				}
 			}
