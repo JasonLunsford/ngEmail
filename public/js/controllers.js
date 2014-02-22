@@ -23,22 +23,25 @@ angular.module('myApp.controllers', []).
 			}
 		};
 
+		// pick up signal from the MailListingController child scope, reset selectedMail object and call the isSelected method, which closes
+		// the former email View (since it was deleted - duh!)
+		$scope.$on('emailHasBeenDeleted', function() {
+			$scope.selectedMail = "";
+			$scope.isSelected();
+		})
+
 	}]).
 	controller('MailListingController', ['$scope', 'mailService', function ($scope, mailService) {
 		$scope.email = [];
 		$scope.emailCollect = [];
 
+		// call the mailSerice service, via promise, to collect our email from the server
 		mailService.getMail()
 		.success(function(data, status, headers) {
 			$scope.email = data.all;
 		})
 		.error(function(data, status, headers) {
 			
-		});
-
-		// catch ngRepeatFinished signal so we can act after emails have been rendered
-		$scope.$on('ngRepeatFinished', function(ngRepeatFinishedEvent) {
-			console.log("signal caught")
 		});
 
 		// receive object with our checkbox info from directive and manipulate the $scope.emailCollect hash accordingly
@@ -63,6 +66,8 @@ angular.module('myApp.controllers', []).
 				}
 			})
 			$scope.email = survivingEmails;
+
+			$scope.$emit("emailHasBeenDeleted");
 		};
 
 		// clear entries already in $scope.emailCollect, then spin thru the $scope.email array and populate the emailCollect array with
