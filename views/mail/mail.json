@@ -11,11 +11,12 @@
 			"to_name":"Jason Lunsford",
 			"to": "miyamota@yahoo.com",
 			"from_name":"J.R.R. Tolkein",
-			"from": ["jerrell50@hotmail.com"],
+			"from": ["tolkeinjrr@hotmail.com"],
 			"sent_at": "2005-05-13T19:02:05",
 			"cc": null,
 			"subject": "The Lord of the Rings.",
-			"email": "joaquin.gibson@yahoo.com",
+			"attachName":"sauronInRealLife",
+			"attachType":"jpg",
 			"id": "b1c884f36def7a66970f9cf57f32d2fb"
 		},
 		{
@@ -28,11 +29,12 @@
 			"to_name":"Jason Lunsford",
 			"to": "miyamota@yahoo.com",
 			"from_name": "Douglas Adams",
-			"from": ["duncan.larkin@hotmail.com"],
+			"from": ["thanksforthefish@hotmail.com"],
 			"sent_at": "2004-01-27T19:22:07",
 			"cc": null,
 			"subject": "The Hitchhiker's Guide to the Galaxy",
-			"email": "vance.kihn@gmail.com",
+			"attachName":null,
+			"attachType":null,
 			"id": "c897f49582520b9d08d482e2476eb462"
 		}, 
 		{
@@ -45,11 +47,12 @@
 			"to_name":"Jason Lunsford",
 			"to": "miyamota@yahoo.com",
 			"from_name": "Orson Scott Card",
-			"from": ["emard.santos@yahoo.com"],
+			"from": ["orson.scott.card@gmail.com"],
 			"sent_at": "2001-02-08T06:23:08",
 			"cc": null,
 			"subject": "Ender's Game",
-			"email": "mraz.esperanza@yahoo.com",
+			"attachName":null,
+			"attachType":null,
 			"id": "271ed7189f2c1a0d446e697c9d594e1c"
 		},
 		{
@@ -62,11 +65,12 @@
 			"to_name":"Jason Lunsford",
 			"to": "miyamota@yahoo.com",
 			"from_name": "Frank Herbert",
-			"from": ["kylee93@yahoo.com"],
+			"from": ["herbertfrank01@yahoo.com"],
 			"sent_at": "2013-12-22T09:55:22",
 			"cc": null,
 			"subject": "Dune",
-			"email": "ugreenfelder@hotmail.com",
+			"attachName":"duneTVshow",
+			"attachType":"jpg",
 			"id": "8f7ee7ebb6b16418c928c1d931db23dd"
 		}, 
 		{
@@ -79,11 +83,12 @@
 			"to_name":"Jason Lunsford",
 			"to": "miyamota@yahoo.com",
 			"from_name": "George R.R. Martin",
-			"from": ["adalberto.weber@yahoo.com"],
+			"from": ["george.rr.martin@yahoo.com"],
 			"sent_at": "1999-01-13T21:39:56",
 			"cc": null,
 			"subject": "A Game of Thrones",
-			"email": "kobe.spinka@gmail.com",
+			"attachName":null,
+			"attachType":null,
 			"id": "42f6859f525895088c19b96e1e0ece1f"
 		}, 
 		{
@@ -96,11 +101,12 @@
 			"to_name":"Jason Lunsford",
 			"to": "miyamota@yahoo.com",
 			"from_name": "George Orwell",
-			"from": ["mills.trever@dachbernier.info"],
+			"from": ["george.orwell@dachbernier.info"],
 			"sent_at": "1998-06-04T23:40:50",
 			"cc": null,
-			"subject": "1984 (omg why did I read this?)",
-			"email": "dane.fritsch@yahoo.com",
+			"subject": "1984 (omg why did I write this?)",
+			"attachName":null,
+			"attachType":null,
 			"id": "17df979c4e8ac1a5d626eb9d41cdb8dd"
 		}, 
 		{
@@ -113,11 +119,12 @@
 			"to_name":"Jason Lunsford",
 			"to": "miyamota@yahoo.com",
 			"from_name": "Ray Bradbury",
-			"from": ["brandy.schmidt@pagac.biz"],
+			"from": ["ray.bradbury@pagac.biz"],
 			"sent_at": "2006-06-24T08:00:26",
 			"cc": null,
 			"subject": "Fahrenheit 451",
-			"email": "sjakubowski@gmail.com",
+			"attachName":"burnTheBooks",
+			"attachType":"jpg",
 			"id": "b5a2cdc2d6f0ae6f76c1d8a0c937b9d7"
 		}, 
 		{
@@ -130,11 +137,12 @@
 			"to_name":"Jason Lunsford",
 			"to": "miyamota@yahoo.com",
 			"from_name": "Neil Gaiman",
-			"from": ["fraynor@gmail.com"],
+			"from": ["neil.gaiman@hotmail.com"],
 			"sent_at": "2003-03-28T12:56:14",
 			"cc": null,
 			"subject": "American Gods",
-			"email": "davis.lura@oharavon.biz",
+			"attachName":null,
+			"attachType":null,
 			"id": "1023ac7c47bf98adc3470fb56a111067"
 		}, 
 		{
@@ -147,11 +155,12 @@
 			"to_name":"Jason Lunsford",
 			"to": "miyamota@yahoo.com",
 			"from_name": "Robert Jordan",
-			"from": ["powlowski.camylle@zboncakziemann.org"],
+			"from": ["robert.jordan@zboncakziemann.org"],
 			"sent_at": "2000-03-01T13:09:12",
 			"cc": null,
 			"subject": "The Wheel of Time",
-			"email": "fahey.chet@gmail.com",
+			"attachName":"LanMandragoran",
+			"attachType":"jpg",
 			"id": "c3e807edfd1f2bf237307aafc7a6cb35"
 		}, 
 		{
@@ -164,11 +173,12 @@
 			"to_name":"Jason Lunsford",
 			"to": "miyamota@yahoo.com",
 			"from_name": "Robert A. Heinlein",
-			"from": ["iharris@yahoo.com"],
+			"from": ["rheinlein@yahoo.com"],
 			"sent_at": "1998-02-01T03:22:21",
 			"cc": null,
 			"subject": "Stranger in a Strange Land",
-			"email": "erussel@gmail.com",
+			"attachName":"jerryPournelleTheJerk",
+			"attachType":"jpg",
 			"id": "e6270ccd8e41a0fcbcaa702539fe27c3"
 		}, 
 		{
@@ -181,11 +191,12 @@
 			"to_name":"Jason Lunsford",
 			"to": "miyamota@yahoo.com",
 			"from_name": "Patrick Rothfuss",
-			"from": ["uleuschke@hotmail.com"],
+			"from": ["patrickrothfuss01@hotmail.com"],
 			"sent_at": "2014-05-02T22:44:38",
 			"cc": ["danial.stokes@hauck.info"],
 			"subject": "The Name of the Wind (Kingkiller Chronicles)",
-			"email": "meggie02@bernhard.com",
+			"attachName":null,
+			"attachType":null,
 			"id": "76225b0f9f3795fe1dca7b5e6f99e04a"
 		}, 
 		{
@@ -198,11 +209,12 @@
 			"to_name":"Jason Lunsford",
 			"to": "miyamota@yahoo.com",
 			"from_name": "Philip K. Dick",
-			"from": ["danial.stokes@hauck.info"], 
+			"from": ["philip.dick@hauck.info"], 
 			"sent_at": "2012-09-29T03:18:31", 
 			"cc": null, 
 			"subject": "Do Androids Dream of Electric Sheep?", 
-			"email": "weimann.leta@gmail.com", 
+			"attachName":null,
+			"attachType":null,
 			"id": "200047bff003f5271e7eaa212241d357"
 		}, 
 		{
@@ -215,11 +227,12 @@
 			"to_name":"Jason Lunsford",
 			"to": "miyamota@yahoo.com",
 			"from_name": "Stephen King", 
-			"from": ["hegmann.lucious@brown.net"], 
+			"from": ["stephen.king@brown.net"], 
 			"sent_at": "2011-07-06T02:34:32", 
 			"cc": null, 
 			"subject": "The Stand", 
-			"email": "jefferey79@yahoo.com", 
+			"attachName":"theStandTVshowCover",
+			"attachType":"png",
 			"id": "422a21ca29a98070268012ce853a18a6"
 		}, 
 		{
@@ -232,11 +245,12 @@
 			"to_name":"Jason Lunsford",
 			"to": "miyamota@yahoo.com", 
 			"from_name": "Neal Stephenson", 
-			"from": ["alycia.sanford@heidenreichhomenick.com"], 
+			"from": ["neal.stephenson@heidenreichhomenick.com"], 
 			"sent_at": "2007-10-14T23:26:15", 
 			"cc": null, 
 			"subject": "Snow Crash", 
-			"email": "towne.layla@cronalang.com", 
+			"attachName":null,
+			"attachType":null,
 			"id": "db995620fb18b236c992e0fd55030703"
 		}, 
 		{
@@ -249,11 +263,12 @@
 			"to_name":"Jason Lunsford",
 			"to": "miyamota@yahoo.com", 
 			"from_name": "Anne McCaffrey", 
-			"from": ["isaac81@robertsjenkins.com"], 
+			"from": ["mccaffreyAnne@robertsjenkins.com"], 
 			"sent_at": "2005-03-09T07:39:25", 
 			"cc": null, 
 			"subject": "Dragonflight (Pern)", 
-			"email": "ressie.auer@hotmail.com", 
+			"attachName":null,
+			"attachType":null,
 			"id": "54b69c70944bb930b0ddf23642701eee"
 		}, 
 		{
@@ -266,11 +281,12 @@
 			"to_name":"Jason Lunsford",
 			"to": "miyamota@yahoo.com", 
 			"from_name": "Roger Zelazny", 
-			"from": ["willa.moore@trantow.net"], 
+			"from": ["roger.zelazny@trantow.net"], 
 			"sent_at": "1994-11-29T04:45:20", 
 			"cc": ["isaac81@robertsjenkins.com"], 
 			"subject": "Amber Chronicles", 
-			"email": "maribel89@gmail.com", 
+			"attachName":"walkThePattern",
+			"attachType":"png",
 			"id": "06b36c4c3524413656c35a6b2b94c8ba"
 		}, 
 		{
@@ -283,11 +299,12 @@
 			"to_name":"Jason Lunsford",
 			"to": "miyamota@yahoo.com", 
 			"from_name": "Neil Gaiman", 
-			"from": ["emmy.cartwright@hotmail.com"], 
+			"from": ["neil.gaiman@hotmail.com"], 
 			"sent_at": "1998-12-10T19:13:31", 
 			"cc": null, 
 			"subject": "Neverwhere", 
-			"email": "ao'hara@conn.com", 
+			"attachName":null,
+			"attachType":null,
 			"id": "e08815b2da038ca6b7126ba406d48457"
 		}, 
 		{
@@ -300,11 +317,12 @@
 			"to_name":"Jason Lunsford",
 			"to": "miyamota@yahoo.com", 
 			"from_name": "Dan Simmons", 
-			"from": ["ebarton@glover.com"], 
+			"from": ["danSimmons01@glover.com"], 
 			"sent_at": "2004-12-04T21:24:23", 
 			"cc": ["emmy.cartwright@hotmail.com"],
 			"subject": "Hyperion Saga (including the second trilogy)", 
-			"email": "kkrajcik@gmail.com", 
+			"attachName":"myShriek",
+			"attachType":"jpg",
 			"id": "f7c7284e01eeddc87c0659f4b878d1a9"
 		}, 
 		{
@@ -317,11 +335,12 @@
 			"to_name":"Jason Lunsford",
 			"to": "miyamota@yahoo.com", 
 			"from_name": "Max Brooks", 
-			"from": ["cleta95@blockschowalter.biz"], 
+			"from": ["maxBrooks@blockschowalter.biz"], 
 			"sent_at": "2000-12-08T03:31:35", 
 			"cc": null, 
 			"subject": "World War Z: An Oral History of the Zombie War", 
-			"email": "thea.leuschke@hotmail.com", 
+			"attachName":"maxBrooksShopping",
+			"attachType":"png",
 			"id": "41d2fbacd7b93395ff53eaea8b80d087"
 		}, 
 		{
@@ -334,11 +353,12 @@
 			"to_name":"Jason Lunsford",
 			"to": "miyamota@yahoo.com", 
 			"from_name": "Robert E. Howard", 
-			"from": ["waters.ashley@yahoo.com"], 
+			"from": ["robert.howard@yahoo.com"], 
 			"sent_at": "2000-06-13T18:50:55", 
 			"cc": null, 
 			"subject": "Conan the Barbarian", 
-			"email": "baumbach.bernice@hotmail.com", 
+			"attachName":null,
+			"attachType":null,
 			"id": "dcd0b28d664f4b8d71283bff8ebec4cd"
 		}
 	]
