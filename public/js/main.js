@@ -7,7 +7,8 @@ angular.module('myApp', [
 	'ngSanitize',
 	'myApp.controllers',
 	'myApp.services',
-	'myApp.directives'
+	'myApp.directives',
+  'myApp.filters'
 ]).
 
 config(function ($routeProvider, $locationProvider) {

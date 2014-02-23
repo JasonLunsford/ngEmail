@@ -1,3 +1,4 @@
+'use strict';
 
 angular.module('myApp.directives', []).
 	directive('emailListing', [function() {

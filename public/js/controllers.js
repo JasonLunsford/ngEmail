@@ -32,17 +32,15 @@ angular.module('myApp.controllers', []).
 
 	}]).
 	controller('MailListingController', ['$scope', 'mailService', function ($scope, mailService) {
-		$scope.email = [];
-		$scope.emailCollect = [];
+		$scope.email = {};
+		$scope.emailCollect = {};
 
 		// call the mailSerice service, via promise, to collect our email from the server
 		mailService.getMail()
 		.success(function(data, status, headers) {
-			$scope.email = data.all;
+			$scope.email = data;
 		})
-		.error(function(data, status, headers) {
-			
-		});
+		.error(function(data, status, headers) { });
 
 		// receive object with our checkbox info from directive and manipulate the $scope.emailCollect hash accordingly
 		$scope.updateCheckedEmail = function(checkedEmail) {
@@ -59,13 +57,13 @@ angular.module('myApp.controllers', []).
 		// spin thru the $scope.email array and push those entries whose ID is NOT in the emailCollect hash table to the survivingEmails array
 		// then reset $scope.email to survivingEmails
 		$scope.deleteCheckedEmail = function() {
-			var survivingEmails = [];
-			angular.forEach($scope.email, function(value, key) {
-				if ( !$scope.emailCollect[value.id] ) {
-					survivingEmails.push($scope.email[key]);
+
+			for (var i in $scope.emailCollect) {
+				// use hasOwnProperty to filter out keys from the Object.prototype
+				if ( $scope.emailCollect.hasOwnProperty(i) ) {
+					delete $scope.email[i];
 				}
-			})
-			$scope.email = survivingEmails;
+			}
 
 			$scope.$emit("emailHasBeenDeleted");
 		};
@@ -73,10 +71,11 @@ angular.module('myApp.controllers', []).
 		// clear entries already in $scope.emailCollect, then spin thru the $scope.email array and populate the emailCollect array with
 		// all the ID goodness it can hold. Hopefully all of it.
 		$scope.selectAllEmails = function() {
-			$scope.emailCollect.length = 0;
-			angular.forEach($scope.email, function(value, key) {
-				$scope.emailCollect[value.id] = true;
-			});
+			for (var i in $scope.email) {
+				if ( $scope.email.hasOwnProperty(i) ) {
+					$scope.emailCollect[i] = true;
+				}
+			}
 		}
 
 	}]).
