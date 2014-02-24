@@ -123,18 +123,15 @@ angular.module('myApp.controllers', []).
 			$scope.reply.body = "\n\n ---------------------------- \n\n" + $scope.selectedMail.body;
 		};
 
-		$scope.toggleReplyAll = function() {
+		$scope.toggleForward = function() {
 			$scope.showingReply = !$scope.showingReply;
 			$scope.reply = {};
 			$scope.reply.to = $scope.selectedMail.from.join(", ");
 			$scope.reply.body = "\n\n ---------------------------- \n\n" + $scope.selectedMail.body;
 		};
 
-		$scope.toggleForward = function() {
-			$scope.showingReply = !$scope.showingReply;
-			$scope.reply = {};
-			$scope.reply.to = $scope.selectedMail.from.join(", ");
-			$scope.reply.body = "\n\n ---------------------------- \n\n" + $scope.selectedMail.body;
+		$scope.sendToJunk = function() {
+			console.log( "Junk clicked - not as dirty as it sounds." );
 		};
 
 		$scope.downloadAttachment = function() {
