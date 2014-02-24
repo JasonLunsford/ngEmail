@@ -54,28 +54,61 @@ angular.module('myApp.controllers', []).
 
 		}
 
-		// spin thru the $scope.email array and push those entries whose ID is NOT in the emailCollect hash table to the survivingEmails array
-		// then reset $scope.email to survivingEmails
+		// spin thru the $scope.emailCollect hash table and delete any matching objects found within from the $scope.email hash table
+		// aka associative array, aka Object, aka not an object extended from the Array.prototype.
+		// This works because with Objects delete is the correct way to remove members, wherein Arrays prefer arr.splice.
 		$scope.deleteCheckedEmail = function() {
+			var cleanHashTable = false;
 
 			for (var i in $scope.emailCollect) {
 				// use hasOwnProperty to filter out keys from the Object.prototype
 				if ( $scope.emailCollect.hasOwnProperty(i) ) {
+					cleanHashTable = true;
 					delete $scope.email[i];
+					delete $scope.emailCollect[i];
 				}
 			}
 
-			$scope.$emit("emailHasBeenDeleted");
+			if ( cleanHashTable ) {
+				$scope.$emit("emailHasBeenDeleted");
+			}
 		};
 
-		// clear entries already in $scope.emailCollect, then spin thru the $scope.email array and populate the emailCollect array with
-		// all the ID goodness it can hold. Hopefully all of it.
+		// spin thru the $scope.email hash table and populate the emailCollect with all the ID goodness it can hold.
+		// or clear entries already in $scope.emailCollect
+		$scope.selectAllBtn = true;
 		$scope.selectAllEmails = function() {
-			for (var i in $scope.email) {
-				if ( $scope.email.hasOwnProperty(i) ) {
-					$scope.emailCollect[i] = true;
+
+			if ( $scope.selectAllBtn ) {
+				for (var i in $scope.email) {
+					if ( $scope.email.hasOwnProperty(i) ) {
+						$scope.emailCollect[i] = true;
+					}
+				}
+			} else {
+				for (var i in $scope.emailCollect) {
+					// use hasOwnProperty to filter out keys from the Object.prototype
+					if ( $scope.emailCollect.hasOwnProperty(i) ) {
+						delete $scope.emailCollect[i];
+					}
 				}
 			}
+
+			// toggle the select / unselect all flag
+			$scope.selectAllBtn = $scope.selectAllBtn === false ? true: false;
+		}
+
+		// clean up emailCollect after Mark As Unread clicked to prevent unintended email deletes - yay good housekeeping
+		$scope.showUnreadEmails = function() {
+			for (var i in $scope.emailCollect) {
+				// use hasOwnProperty to filter out keys from the Object.prototype
+				if ( $scope.emailCollect.hasOwnProperty(i) ) {
+					delete $scope.emailCollect[i];
+				}
+			}
+
+			// reset back to true to keep UI consistent
+			$scope.selectAllBtn = true;
 		}
 
 	}]).

@@ -113,14 +113,7 @@
 
 	.bottomSpace { margin-bottom:20px; }
 	.stripLeftPadding { padding-left:0px; }
-
-	.searchFilters {
-		height:35px;
-		line-height:35px;
-	}
-
-	.searchFilters input[type="checkbox"] { margin-top:9px; }
-	.searchFilters span { margin-right:10px; }
+	.stripRightPadding { padding-right:0px; }
 
 	.mainEmailList {
 		height:550px;

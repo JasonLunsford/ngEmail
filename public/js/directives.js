@@ -86,7 +86,8 @@ angular.module('myApp.directives', []).
 
 					angular.forEach(listItems, function(v, k) {
 						var checkBox = angular.element(listItems[k].getElementsByTagName('input'));
-						checkBox[0].checked = true;
+						//checkBox[0].checked = true;
+						( checkBox[0].checked ) ? checkBox[0].checked = false : checkBox[0].checked = true;
 					})
 				});
 			}

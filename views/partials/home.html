@@ -3,7 +3,7 @@
 		<div class="row">
 			<h2 class="col-sm-6 col-sm-offset-1 stripLeftPadding">Inbox</h2>
 			<div class="col-sm-5">
-				<button class="btn btn-primary btn-lg pull-right">Compose</button>
+				<button class="btn btn-success btn-lg pull-right">Compose</button>
 			</div>
 		</div>
 	</div>
@@ -14,11 +14,18 @@
 			<div class="col-sm-11 col-sm-offset-1 stripLeftPadding">
 				<input type="search" placeholder="Search" class="form-control" data-ng-model="search.$"/>
 			</div>
-			<div class="col-sm-11 col-sm-offset-1 stripLeftPadding verticalSpace">
-				<button class="btn btn-primary">Spam</button>
-				<button class="btn btn-danger leftSpace" data-ng-click="deleteCheckedEmail()">Delete</button>
-				<button class="btn btn-primary leftSpace" mark-as-unread>Mark As Unread</button>
-				<button class="btn btn-primary leftSpace" data-ng-click="selectAllEmails()" select-all>Select All</button>
+			<div class="col-xs-11 col-sm-5 col-sm-offset-1 stripLeftPadding stripRightPadding verticalSpace">
+				<button class="btn btn-primary">Inbox</button>
+				<button class="btn btn-default">Sent</button>
+				<button class="btn btn-default">Junk</button>
+				<button class="btn btn-default">Recycle</button>
+			</div>
+			<div class="col-xs-11 col-sm-6 stripLeftPadding verticalSpace alignRight">
+				<button class="btn btn-default" data-ng-click="showUnreadEmails()" mark-as-unread>Mark Unread</button>
+				<button class="btn btn-default"
+						data-ng-click="selectAllEmails()"
+						select-all>{{ (selectAllBtn && 'Select All' || 'Unselect All') }}</button>
+				<button class="btn btn-danger" data-ng-click="deleteCheckedEmail()">Delete</button>
 			</div>
 			<ul class="col-sm-11 col-sm-offset-1 list-group mainEmailList" id="emailListing">
 				<!-- Note use of orderBy filter, ordering by an element common in each array,
@@ -53,10 +60,10 @@
 				<p data-ng-bind-html="selectedMail.body"></p>
 			</div>
 			<div class="col-sm-11">
-				<button class="btn btn-primary pull-left" data-ng-click="toggleReply()">Reply</button>
-				<button class="btn btn-primary pull-left leftSpace" data-ng-click="toggleReplyAll()">Reply All</button>
-				<button class="btn btn-primary pull-left leftSpace" data-ng-click="toggleForward()">Forward</button>
-				<button class="btn btn-primary pull-right" data-ng-click="downloadAttachment()">Download Attachment</button>
+				<button class="btn btn-default pull-left" data-ng-click="toggleReply()">Reply</button>
+				<button class="btn btn-default pull-left leftSpace" data-ng-click="toggleReplyAll()">Reply All</button>
+				<button class="btn btn-default pull-left leftSpace" data-ng-click="toggleForward()">Forward</button>
+				<button class="btn btn-info pull-right" data-ng-click="downloadAttachment()">Download Attachment</button>
 			</div>
 			
 			<form id="replyForm" class="col-sm-11 replyForm verticalSpace" role="form" data-ng-submit="sendEmailReply()" data-ng-show="showingReply">
@@ -80,9 +87,9 @@
 							  data-ng-model="reply.body"></textarea>
 				</div>
 				<div class="form-group">
-					<button class="btn btn-primary btn-lg pull-right leftSpace" data-ng-click="sendReply()">Send</button>
+					<button class="btn btn-success btn-lg pull-right leftSpace" data-ng-click="sendReply()">Send</button>
 					<button class="btn btn-danger btn-lg pull-right" data-ng-click="toggleReply()">Cancel</button>
-					<button class="btn btn-primary btn-lg pull-left" data-ng-click="attachFile()">Attach File</button>
+					<button class="btn btn-info btn-lg pull-left" data-ng-click="attachFile()">Attach File</button>
 				</div>
 			</form>
 
