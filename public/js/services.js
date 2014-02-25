@@ -26,22 +26,20 @@ angular.module('myApp.services', []).
 			sendEmail:sendEmail
 		}
 	}]).
-	// may decide to make this a directive instead, stay tuned
-	factory('keyboardService', ['$rootScope', function($rootScope) {
-		var watches = [];
-		var onKeyPress = function(key) {
-			for ( var i = watches.length - 1; i >= 0; i-- ) {
-				watches[i](key);
-			};
-		};
-  
-		document.addEventListener('keypress', onKeyPress);
-  
-		return {
-			setGlobalKey: function(key, f) {
-				watches.push(function(evt) {
-					if (evt.ctrlKey && evt.which == key) { f(evt); }
-				});
-			}
+	factory('pageTitleService', [function() {
+		var internalTitle = "Inbox";
+
+		var setMyTitle = function(title) {
+			internalTitle = title;
 		}
+
+		var getMyTitle = function() {
+			return internalTitle;
+		}
+
+		return {
+			setMyTitle:setMyTitle,
+			getMyTitle:getMyTitle
+		}
+
 	}]);

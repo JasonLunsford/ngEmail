@@ -1,8 +1,9 @@
 'use strict';
 
 angular.module('myApp.controllers', []).
-	controller('HomeController', ['$scope', '$sce', 'keyboardService', function ($scope, $sce, keyboardService) {
+	controller('HomeController', ['$scope', '$sce', 'pageTitleService', function ($scope, $sce, pageTitleService) {
 		$scope.selectedMail = "";
+		$scope.currentPageTitle = pageTitleService.getMyTitle();
 		
 		/* called from home.html, typically handled by MailListingController, but works here
 		   because Angular "walk ups" the controller heirarchy when / if it fails to find
@@ -30,8 +31,12 @@ angular.module('myApp.controllers', []).
 			$scope.isSelected();
 		})
 
+		$scope.$on('pageTitleChanged', function() {
+			$scope.currentPageTitle = pageTitleService.getMyTitle();
+		})
+
 	}]).
-	controller('MailListingController', ['$scope', 'mailService', function ($scope, mailService) {
+	controller('MailListingController', ['$scope', 'mailService', 'pageTitleService', function ($scope, mailService, pageTitleService) {
 		$scope.email = {};
 		$scope.emailCollect = {};
 
@@ -109,6 +114,30 @@ angular.module('myApp.controllers', []).
 
 			// reset back to true to keep UI consistent
 			$scope.selectAllBtn = true;
+		}
+
+		$scope.selectInbox = function() {
+			pageTitleService.setMyTitle("Inbox");
+			$scope.$emit('pageTitleChanged');
+
+		}
+
+		$scope.selectSent = function() {
+			pageTitleService.setMyTitle("Sent");
+			$scope.$emit('pageTitleChanged');
+
+		}
+
+		$scope.selectJunk = function() {
+			pageTitleService.setMyTitle("Junk");
+			$scope.$emit('pageTitleChanged');
+
+		}
+
+		$scope.selectRecycle = function() {
+			pageTitleService.setMyTitle("Recycle");
+			$scope.$emit('pageTitleChanged');
+
 		}
 
 	}]).

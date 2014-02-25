@@ -114,4 +114,17 @@ angular.module('myApp.directives', []).
 				}
 			}
 		}
+	}]).
+	directive('onBoxSelect', [function() {
+		return {
+			restrict: 'EA',
+			replace: false,
+			scope: true,
+			link: function(scope, element, attrs) {
+				element.bind('click', function() {
+					element.parent().children().removeClass('btn-primary').addClass('btn-default');
+					element.removeClass('btn-default').addClass('btn-primary');
+				});
+			}
+		}
 	}]);

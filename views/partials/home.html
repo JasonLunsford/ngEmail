@@ -1,7 +1,7 @@
 <div class="row">
 	<div class="col-sm-7 col-md-6 col-lg-4 verticalSpace">
 		<div class="row">
-			<h2 class="col-sm-6 col-sm-offset-1 stripLeftPadding">Inbox</h2>
+			<h2 class="col-sm-6 col-sm-offset-1 stripLeftPadding">{{ currentPageTitle }}</h2>
 			<div class="col-sm-5">
 				<button class="btn btn-success btn-lg pull-right">Compose</button>
 			</div>
@@ -15,10 +15,10 @@
 				<input type="search" placeholder="Search" class="form-control" data-ng-model="search.$"/>
 			</div>
 			<div class="col-xs-11 col-sm-5 col-sm-offset-1 stripLeftPadding stripRightPadding verticalSpace">
-				<button class="btn btn-primary">Inbox</button>
-				<button class="btn btn-default">Sent</button>
-				<button class="btn btn-default">Junk</button>
-				<button class="btn btn-default">Recycle</button>
+				<button class="btn btn-primary" data-ng-click="selectInbox()" on-box-select>Inbox</button>
+				<button class="btn btn-default" data-ng-click="selectSent()" on-box-select>Sent</button>
+				<button class="btn btn-default" data-ng-click="selectJunk()" on-box-select>Junk</button>
+				<button class="btn btn-default" data-ng-click="selectRecycle()" on-box-select>Recycle</button>
 			</div>
 			<div class="col-xs-11 col-sm-6 stripLeftPadding verticalSpace alignRight">
 				<button class="btn btn-default" data-ng-click="showUnreadEmails()" mark-as-unread>Mark Unread</button>
