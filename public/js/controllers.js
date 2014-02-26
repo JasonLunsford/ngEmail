@@ -45,7 +45,7 @@ angular.module('myApp.controllers', []).
 		   if inbox true, show Mark Unread.
 		   if trash false, show Recycle, otherwise show Delete
 		*/
-		$scope.mailboxOpts = { inboxSet:true, trashSet:false};
+		$scope.mailboxOpts = { inboxSet:true, trashSet:false, junkSet:false};
 
 		// initialize a mailbox flag array to keep track of which mailbox we are on, allows decoupling from the name displayed in the view
 		$scope.mailbox = { inbox:true, sent:false, junk:false, trash:false }
@@ -107,6 +107,7 @@ angular.module('myApp.controllers', []).
 			}
 
 			if ( cleanHashTable ) {
+				$scope.selectAllBtn = true;
 				$scope.$emit("emailHasBeenDeleted");
 			}
 		};
@@ -117,10 +118,33 @@ angular.module('myApp.controllers', []).
 		$scope.selectAllEmails = function() {
 
 			if ( $scope.selectAllBtn ) {
-				for (var i in $scope.inbox) {
-					if ( $scope.inbox.hasOwnProperty(i) ) {
-						$scope.emailCollect[i] = true;
+				// check flag state of each mailbox, act accordingly
+				if ( $scope.mailbox.inbox ) {
+					for (var i in $scope.inbox) {
+						if ( $scope.inbox.hasOwnProperty(i) ) {
+							$scope.emailCollect[i] = true;
+						}
 					}
+				} else if ( $scope.mailbox.sent ) {
+					for (var i in $scope.sent) {
+						if ( $scope.sent.hasOwnProperty(i) ) {
+							$scope.emailCollect[i] = true;
+						}
+					}
+				} else if ( $scope.mailbox.junk ) {
+					for (var i in $scope.junk) {
+						if ( $scope.junk.hasOwnProperty(i) ) {
+							$scope.emailCollect[i] = true;
+						}
+					}
+				} else if ( $scope.mailbox.trash ) {
+					for (var i in $scope.trash) {
+						if ( $scope.trash.hasOwnProperty(i) ) {
+							$scope.emailCollect[i] = true;
+						}
+					}
+				} else {
+					console.log("Unknown mailbox type or typo somewhere.");
 				}
 			} else {
 				for (var i in $scope.emailCollect) {
@@ -148,6 +172,27 @@ angular.module('myApp.controllers', []).
 			$scope.selectAllBtn = true;
 		}
 
+		$scope.returnToInbox = function() {
+			var cleanHashTable = false;
+
+			for (var i in $scope.emailCollect) {
+				// use hasOwnProperty to filter out keys from the Object.prototype
+				if ( $scope.emailCollect.hasOwnProperty(i) ) {
+					cleanHashTable = true;
+					// move item to inbox
+					$scope.inbox[i] = $scope.junk[i];
+					// then remove it from the junk mailbox and the collected email hash table
+					delete $scope.junk[i];
+					delete $scope.emailCollect[i];
+				}
+			}
+
+			if ( cleanHashTable ) {
+				$scope.selectAllBtn = true;
+				$scope.$emit("emailHasBeenDeleted");
+			}
+		}
+
 		$scope.selectInbox = function() {
 			// set page title via service
 			pageTitleService.setMyTitle("Inbox");
@@ -156,8 +201,8 @@ angular.module('myApp.controllers', []).
 			for ( var i in $scope.mailbox ) { $scope.mailbox[i] = false }
 			$scope.mailbox.inbox = true;
 			// set mailbox control options accordingly
+			for ( var i in $scope.mailboxOpts ) { $scope.mailboxOpts[i] = false }
 			$scope.mailboxOpts.inboxSet = true;
-			$scope.mailboxOpts.trashSet = false;
 			// signal to parent controller the page title changed
 			$scope.$emit('pageTitleChanged');
 
@@ -169,7 +214,7 @@ angular.module('myApp.controllers', []).
 			pageTitleService.setMyTitle("Sent");
 			for ( var i in $scope.mailbox ) { $scope.mailbox[i] = false }
 			$scope.mailbox.sent = true;
-			$scope.mailboxOpts.inboxSet = false;
+			for ( var i in $scope.mailboxOpts ) { $scope.mailboxOpts[i] = false }
 			$scope.mailboxOpts.trashSet = true;
 			$scope.$emit('pageTitleChanged');
 
@@ -180,7 +225,8 @@ angular.module('myApp.controllers', []).
 			pageTitleService.setMyTitle("Junk");
 			for ( var i in $scope.mailbox ) { $scope.mailbox[i] = false }
 			$scope.mailbox.junk = true;
-			$scope.mailboxOpts.inboxSet = false;
+			for ( var i in $scope.mailboxOpts ) { $scope.mailboxOpts[i] = false }
+			$scope.mailboxOpts.junkSet = true;
 			$scope.mailboxOpts.trashSet = true;
 			$scope.$emit('pageTitleChanged');
 
@@ -191,7 +237,7 @@ angular.module('myApp.controllers', []).
 			pageTitleService.setMyTitle("Trash");
 			for ( var i in $scope.mailbox ) { $scope.mailbox[i] = false }
 			$scope.mailbox.trash = true;
-			$scope.mailboxOpts.inboxSet = false;
+			for ( var i in $scope.mailboxOpts ) { $scope.mailboxOpts[i] = false }
 			$scope.mailboxOpts.trashSet = true;
 			$scope.$emit('pageTitleChanged');
 
@@ -219,6 +265,10 @@ angular.module('myApp.controllers', []).
 
 		$scope.sendToJunk = function() {
 			console.log( "Junk clicked - not as dirty as it sounds." );
+		};
+
+		$scope.sendToTrash = function() {
+			console.log( "Trashed clicked - bye-bye email." );
 		};
 
 		$scope.downloadAttachment = function() {

@@ -22,6 +22,7 @@
 			</div>
 			<div class="col-xs-11 col-sm-6 stripLeftPadding verticalSpace alignRight">
 				<button class="btn btn-default" data-ng-show="mailboxOpts.inboxSet" data-ng-click="showUnreadEmails()" mark-as-unread>Mark Unread</button>
+				<button class="btn btn-default" data-ng-show="mailboxOpts.junkSet" data-ng-click="returnToInbox()">Not Junk</button>
 				<button class="btn btn-default"
 						data-ng-click="selectAllEmails()"
 						select-all>{{ (selectAllBtn && 'Select All' || 'Unselect All') }}</button>
@@ -61,6 +62,7 @@
 				<button class="btn btn-default pull-left" data-ng-click="toggleReply()">Reply</button>
 				<button class="btn btn-default pull-left leftSpace" data-ng-click="toggleForward()">Forward</button>
 				<button class="btn btn-warning pull-left leftSpace" data-ng-click="sendToJunk()">Junk</button>
+				<button class="btn btn-danger pull-left leftSpace" data-ng-click="sendToTrash()">Recycle</button>
 				<button class="btn btn-info pull-right" data-ng-click="downloadAttachment()">Download Attachment</button>
 			</div>
 			
