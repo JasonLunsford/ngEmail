@@ -27,7 +27,7 @@ angular.module('myApp.services', []).
 		}
 	}]).
 	factory('pageTitleService', [function() {
-		var internalTitle = "Inbox";
+		var internalTitle;
 
 		var setMyTitle = function(title) {
 			internalTitle = title;

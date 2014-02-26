@@ -21,7 +21,7 @@
 				<button class="btn btn-default" data-ng-click="selectRecycle()" on-box-select>Recycle</button>
 			</div>
 			<div class="col-xs-11 col-sm-6 stripLeftPadding verticalSpace alignRight">
-				<button class="btn btn-default" data-ng-click="showUnreadEmails()" mark-as-unread>Mark Unread</button>
+				<button class="btn btn-default" data-ng-show="mailbox.inbox" data-ng-click="showUnreadEmails()" mark-as-unread>Mark Unread</button>
 				<button class="btn btn-default"
 						data-ng-click="selectAllEmails()"
 						select-all>{{ (selectAllBtn && 'Select All' || 'Unselect All') }}</button>
