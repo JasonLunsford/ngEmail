@@ -18,19 +18,17 @@
 				<button class="btn btn-primary" data-ng-click="selectInbox()" on-box-select>Inbox</button>
 				<button class="btn btn-default" data-ng-click="selectSent()" on-box-select>Sent</button>
 				<button class="btn btn-default" data-ng-click="selectJunk()" on-box-select>Junk</button>
-				<button class="btn btn-default" data-ng-click="selectRecycle()" on-box-select>Recycle</button>
+				<button class="btn btn-default" data-ng-click="selectTrash()" on-box-select>Trash</button>
 			</div>
 			<div class="col-xs-11 col-sm-6 stripLeftPadding verticalSpace alignRight">
-				<button class="btn btn-default" data-ng-show="mailbox.inbox" data-ng-click="showUnreadEmails()" mark-as-unread>Mark Unread</button>
+				<button class="btn btn-default" data-ng-show="mailboxOpts.inboxSet" data-ng-click="showUnreadEmails()" mark-as-unread>Mark Unread</button>
 				<button class="btn btn-default"
 						data-ng-click="selectAllEmails()"
 						select-all>{{ (selectAllBtn && 'Select All' || 'Unselect All') }}</button>
-				<button class="btn btn-danger" data-ng-click="deleteCheckedEmail()">Delete</button>
+				<button class="btn btn-danger" data-ng-show="!mailboxOpts.trashSet" data-ng-click="deleteCheckedEmail()">Recycle</button>
+				<button class="btn btn-danger" data-ng-show="mailboxOpts.trashSet" data-ng-click="deleteCheckedEmail()">Delete</button>
 			</div>
 			<ul class="col-sm-11 col-sm-offset-1 list-group mainEmailList" id="emailListing">
-				<!-- Note use of orderBy filter, ordering by an element common in each array,
-					 and passing "true" ensures results will be displayed in descending (newest->oldest) order 
-					 finally searchPastNYears is a custom filter function, defined in the Controller-->
 				<li class="list-group-item freshEmail"
 					email-listing
 					email="mail"

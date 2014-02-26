@@ -3,8 +3,10 @@
 angular.module('myApp.controllers', []).
 	controller('HomeController', ['$scope', '$sce', 'pageTitleService', function ($scope, $sce, pageTitleService) {
 		$scope.selectedMail = "";
-		$scope.mailbox = {inbox:true}
-		$scope.currentPageTitle = "Inbox";
+
+		// When app first opens point to the Inbox
+		pageTitleService.setMyTitle("Inbox");
+		$scope.currentPageTitle = pageTitleService.getMyTitle();
 		
 		/* called from home.html, typically handled by MailListingController, but works here
 		   because Angular "walk ups" the controller heirarchy when / if it fails to find
@@ -38,13 +40,29 @@ angular.module('myApp.controllers', []).
 
 	}]).
 	controller('MailListingController', ['$scope', 'mailService', 'pageTitleService', function ($scope, mailService, pageTitleService) {
+		/* object controlling visibility of mailbox controls - loosely coupled to the mailbox, but should be flexible in cases where multiple
+		   mailboxes will need to share the same control (like everybody showing "Delete" except for Inbox)
+		   if inbox true, show Mark Unread.
+		   if trash false, show Recycle, otherwise show Delete
+		*/
+		$scope.mailboxOpts = { inboxSet:true, trashSet:false};
+
+		// initialize a mailbox flag array to keep track of which mailbox we are on, allows decoupling from the name displayed in the view
+		$scope.mailbox = { inbox:true, sent:false, junk:false, trash:false }
+
+		// initialize the various objects we'll be using
 		$scope.email = {};
+		$scope.inbox = {};
+		$scope.sent = {};
+		$scope.junk = {};
+		$scope.trash = {};
 		$scope.emailCollect = {};
 
 		// call the mailSerice service, via promise, to collect our email from the server
 		mailService.getMail()
 		.success(function(data, status, headers) {
 			$scope.email = data;
+			$scope.inbox = data;
 		})
 		.error(function(data, status, headers) { });
 
@@ -70,7 +88,20 @@ angular.module('myApp.controllers', []).
 				// use hasOwnProperty to filter out keys from the Object.prototype
 				if ( $scope.emailCollect.hasOwnProperty(i) ) {
 					cleanHashTable = true;
-					delete $scope.email[i];
+
+					// check flag state of each mailbox, act accordingly
+					if ( $scope.mailbox.inbox ) {
+						$scope.trash[i] = $scope.inbox[i];
+						delete $scope.inbox[i];
+					} else if ( $scope.mailbox.sent ) {
+						delete $scope.sent[i];
+					} else if ( $scope.mailbox.junk ) {
+						delete $scope.junk[i];
+					} else if ( $scope.mailbox.trash ) {
+						delete $scope.trash[i];
+					} else {
+						console.log("Unknown mailbox type or typo somewhere.");
+					}
 					delete $scope.emailCollect[i];
 				}
 			}
@@ -86,8 +117,8 @@ angular.module('myApp.controllers', []).
 		$scope.selectAllEmails = function() {
 
 			if ( $scope.selectAllBtn ) {
-				for (var i in $scope.email) {
-					if ( $scope.email.hasOwnProperty(i) ) {
+				for (var i in $scope.inbox) {
+					if ( $scope.inbox.hasOwnProperty(i) ) {
 						$scope.emailCollect[i] = true;
 					}
 				}
@@ -118,31 +149,53 @@ angular.module('myApp.controllers', []).
 		}
 
 		$scope.selectInbox = function() {
+			// set page title via service
 			pageTitleService.setMyTitle("Inbox");
-			$scope.mailbox = {inbox:true};
+			// set all keys in this hash table to false (not using hasOwnProperty here, watch out for strange defects)
+			// then set appropriate mailbox flag to true
+			for ( var i in $scope.mailbox ) { $scope.mailbox[i] = false }
+			$scope.mailbox.inbox = true;
+			// set mailbox control options accordingly
+			$scope.mailboxOpts.inboxSet = true;
+			$scope.mailboxOpts.trashSet = false;
+			// signal to parent controller the page title changed
 			$scope.$emit('pageTitleChanged');
 
+			// set the common array equal to the targetted array so ng-repeat spins thru the correct data set
+			$scope.email = $scope.inbox;
 		}
 
 		$scope.selectSent = function() {
 			pageTitleService.setMyTitle("Sent");
-			$scope.mailbox = {inbox:false};
+			for ( var i in $scope.mailbox ) { $scope.mailbox[i] = false }
+			$scope.mailbox.sent = true;
+			$scope.mailboxOpts.inboxSet = false;
+			$scope.mailboxOpts.trashSet = true;
 			$scope.$emit('pageTitleChanged');
 
+			$scope.email = $scope.sent;
 		}
 
 		$scope.selectJunk = function() {
 			pageTitleService.setMyTitle("Junk");
-			$scope.mailbox = {inbox:false};
+			for ( var i in $scope.mailbox ) { $scope.mailbox[i] = false }
+			$scope.mailbox.junk = true;
+			$scope.mailboxOpts.inboxSet = false;
+			$scope.mailboxOpts.trashSet = true;
 			$scope.$emit('pageTitleChanged');
 
+			$scope.email = $scope.junk;
 		}
 
-		$scope.selectRecycle = function() {
-			pageTitleService.setMyTitle("Recycle");
-			$scope.mailbox = {inbox:false};
+		$scope.selectTrash = function() {
+			pageTitleService.setMyTitle("Trash");
+			for ( var i in $scope.mailbox ) { $scope.mailbox[i] = false }
+			$scope.mailbox.trash = true;
+			$scope.mailboxOpts.inboxSet = false;
+			$scope.mailboxOpts.trashSet = true;
 			$scope.$emit('pageTitleChanged');
 
+			$scope.email = $scope.trash;
 		}
 
 	}]).
