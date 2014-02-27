@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('myApp.services', []).
+angular.module('ngEmailv2.services', []).
 	factory('mailService', ['$http', '$q', function($http, $q) {
 		var getMail = function() {
 			return $http({ method:'GET', url:'/api/mail'})

@@ -2,28 +2,32 @@
 
 // Declare app level module which depends on filters, and services
 
-angular.module('myApp', [
-	'ngRoute',
+angular.module('ngEmailv2', [
+	'ui.router',
 	'ngSanitize',
-	'myApp.controllers',
-	'myApp.services',
-	'myApp.directives',
-  'myApp.filters'
+	'ngEmailv2.controllers',
+	'ngEmailv2.services',
+	'ngEmailv2.directives',
+  'ngEmailv2.filters'
 ]).
 
-config(function ($routeProvider, $locationProvider) {
-  $routeProvider.
-    when('/', {
-      templateUrl: 'partials/home',
-      controller: 'HomeController'
-    }).
-    when('/settings', {
-      templateUrl: 'partials/settings',
-      controller: 'SettingsController'
-    }).
-    otherwise({
-      redirectTo: '/'
-    });
+config(function ($urlRouterProvider, $locationProvider, $stateProvider) {
+
+  // For any unmatched url, redirect to /
+  $urlRouterProvider.otherwise("/");
 
   $locationProvider.html5Mode(true);
+
+  $stateProvider
+    .state('home', {
+        url: '/',
+        templateUrl: 'partials/home',
+        controller: 'HomeController'
+    })
+    .state('settings', {
+        url: '/settings',
+        templateUrl: 'partials/settings',
+        controller: 'SettingsController'
+    })
+
 });

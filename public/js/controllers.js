@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('myApp.controllers', []).
+angular.module('ngEmailv2.controllers', []).
 	controller('HomeController', ['$scope', '$sce', 'pageTitleService', function ($scope, $sce, pageTitleService) {
 		$scope.selectedMail = "";
 
