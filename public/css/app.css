@@ -153,3 +153,15 @@
 		background-color:#bbbbbb;
 	}
 	.freshEmail { font-weight:bold; }
+
+/* **************
+	404
+	************* */
+
+	.bigAlert {
+		color:#B60707;
+		font-size:64px;
+		margin-top:120px;
+		overflow:hidden;
+		text-align:center;
+	}

@@ -13,10 +13,15 @@ angular.module('ngEmailv2', [
 
 config(function ($urlRouterProvider, $locationProvider, $stateProvider) {
 
-  // For any unmatched url, redirect to /
-  $urlRouterProvider.otherwise("/");
+  // let's normalize the capitalization if the user went all cap/some cap on us
+  $urlRouterProvider.rule(function ($injector, $location) {
+    var path = $location.path();
+    var normalized = path.toLowerCase();
 
-  $locationProvider.html5Mode(true);
+    if (path != normalized) {
+      $location.replace().path(normalized);
+    }
+  });
 
   $stateProvider
     .state('home', {
@@ -29,5 +34,14 @@ config(function ($urlRouterProvider, $locationProvider, $stateProvider) {
         templateUrl: 'partials/settings',
         controller: 'SettingsController'
     })
+    .state('404', {
+        url: '{path:.*}',
+        templateUrl: 'partials/404'
+    });
+
+  // For any unmatched url, redirect to /404
+  $urlRouterProvider.otherwise("/404");
+
+  $locationProvider.html5Mode(true);
 
 });
