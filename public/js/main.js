@@ -13,15 +13,17 @@ angular.module('ngEmailv2', [
 
 config(function ($urlRouterProvider, $locationProvider, $stateProvider) {
 
-  // let's normalize the capitalization if the user went all cap/some cap on us
-  $urlRouterProvider.rule(function ($injector, $location) {
-    var path = $location.path();
-    var normalized = path.toLowerCase();
+    // let's normalize the capitalization if the user went all cap/some cap on us
+  $urlRouterProvider
+    .rule(function ($injector, $location) {
+      var path = $location.path();
+      var normalized = path.toLowerCase();
 
-    if (path != normalized) {
-      $location.replace().path(normalized);
-    }
-  });
+      if (path != normalized) {
+        $location.replace().path(normalized);
+      }
+    })
+    .otherwise("/404");
 
   $stateProvider
     .state('home', {
@@ -38,9 +40,6 @@ config(function ($urlRouterProvider, $locationProvider, $stateProvider) {
         url: '{path:.*}',
         templateUrl: 'partials/404'
     });
-
-  // For any unmatched url, redirect to /404
-  $urlRouterProvider.otherwise("/404");
 
   $locationProvider.html5Mode(true);
 
